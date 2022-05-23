@@ -1,0 +1,13 @@
+﻿<Window x:Class="Nachkalkulationsanwendung.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nachkalkulationsanwendung"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Button Content="Stammdaten" HorizontalAlignment="Left" Height="67" Margin="457,283,0,0" VerticalAlignment="Top" Width="209" Click="Button_Click"/>
+
+    </Grid>
+</Window>

@@ -1,0 +1,33 @@
+﻿<Window x:Class="Nachkalkulationsanwendung.Stammdaten"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nachkalkulationsanwendung"
+        mc:Ignorable="d"
+        Title="Stammdaten" Height="450" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250*"/>
+            <ColumnDefinition Width="250*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="listboxMitarbeiter" HorizontalAlignment="Left" Height="182" Margin="220,217,0,0" VerticalAlignment="Top" Width="197" SelectionChanged="listboxMitarbeiter_SelectionChanged" />
+        <Button x:Name="Aktualisieren" Content="Aktualisieren" HorizontalAlignment="Left" Height="30" Margin="36,298,0,0" VerticalAlignment="Top" Width="156" Click="Aktualisieren_Click"/>
+        <Button x:Name="addMitarbeiter" Content="Mitarbeiter hinzufügen" HorizontalAlignment="Left" Height="30" Margin="36,260,0,0" VerticalAlignment="Top" Width="156" Click="addMitarbeiter_Click"/>
+        <TextBox x:Name="Vorname" HorizontalAlignment="Left" Height="21" Margin="36,76,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+        <TextBox x:Name="Nachname" HorizontalAlignment="Left" Height="23" Margin="36,146,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+        <TextBox x:Name="Kfaktor" HorizontalAlignment="Left" Height="23" Margin="36,222,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+        <Label Content="Vorname" HorizontalAlignment="Left" Height="30" Margin="36,41,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label Content="Nachname" HorizontalAlignment="Left" Height="24" Margin="36,117,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label Content="Faktor" HorizontalAlignment="Left" Height="29" Margin="36,188,0,0" VerticalAlignment="Top" Width="156"/>
+        <ListBox x:Name="listboxKfz" HorizontalAlignment="Left" Height="182" Margin="206,217,0,0" VerticalAlignment="Top" Width="202" Grid.Column="1"/>
+        <Label Content="Kennzeichen" HorizontalAlignment="Left" Height="26" Margin="13,116,0,0" VerticalAlignment="Top" Width="121" Grid.Column="1"/>
+        <Button x:Name="addKfz" Content="Kfz hinzufügen" HorizontalAlignment="Left" Height="30" Margin="13,332,0,0" VerticalAlignment="Top" Width="144" Click="addKfz_Click" Grid.Column="1"/>
+        <Button x:Name="AktualisiereKfz" Content="Aktualisieren" HorizontalAlignment="Left" Height="25" Margin="13,367,0,0" VerticalAlignment="Top" Width="144" Grid.Column="1" Click="AktualisiereKfz_Click"/>
+        <TextBox x:Name="Kennzeichen" HorizontalAlignment="Left" Height="25" Margin="13,158,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Grid.Column="1"/>
+        <Label Content="Faktor" HorizontalAlignment="Left" Height="28" Margin="13,212,0,0" VerticalAlignment="Top" Width="144" Grid.Column="1"/>
+        <TextBox x:Name="Faktor" HorizontalAlignment="Left" Height="29" Margin="13,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Grid.Column="1"/>
+        <Button x:Name="delMitarbeiter" Content="Mitarbeiter entfernen" HorizontalAlignment="Left" Height="30" Margin="36,340,0,0" VerticalAlignment="Top" Width="156" Click="delMitarbeiter_Click"/>
+
+    </Grid>
+</Window>
