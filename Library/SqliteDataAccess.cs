@@ -6,56 +6,160 @@ using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Library;
-using static Library.Globale;
+
 
 namespace Library
 {
     public class SqliteDataAccess
     {
-        private SQLiteConnection cnn;
-        private SQLiteCommand cmd;
-        private SQLiteDataAdapter DB;
-        private DataSet ds=new DataSet();
-        private DataTable dt=new DataTable();
-        protected static string connectionString = "Data Source=library.db;Version=3;";
-
-        private void SetConnection()
-        {
-            cnn=new SQLiteConnection("Data Source=DemoDB.db;Version=3,New=False;Compress=True;");
-        }
-        private void Ausführen(string text) 
-        {
-            SetConnection();
-            cnn.Open();
-            cmd=cnn.CreateCommand();
-            cmd.CommandText=text;
-            cmd.ExecuteNonQuery();
-            cnn.Close();
-        }
         
-        public static List<MitarbeiterModel> LadenMitarbeiterListe()
+        protected static string connectionString = "Data Source=DemoDB.db;Version=3;";
+        
+        public static DataTable LadenMitarbeiterDT(int maID)
         {
-            List<MitarbeiterModel> listma = new List<MitarbeiterModel>();
+            DataTable dt = new DataTable();
+
             try
             {
                 using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
                 {
                     cnn.Open();
-                    string sql = "SELECT * FROM Mitarberiter";
-                    
+
+                    string sql = "SELECT IDMA,Vorname,Nachname,Kostenfaktor FROM Mitarbeiter WHERE Id = " + maID;
+
+                    if (maID == 0)
+                    {
+                        sql = "SELECT IDMA,Vorname,Nachname,Kostenfaktor FROM Mitarbeiter";
+                    }
+
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
                     {
-                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        using (SQLiteDataAdapter a = new SQLiteDataAdapter(cmd))
+                            a.Fill(dt);
+                    }
+
+                    cnn.Close();
+                }
+            }
+            catch (SQLiteException e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return dt;
+        }
+
+        public static int SaveMitarbeiter(MitarbeiterModel mitarbeiter)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                int result = -1;
+
+                connection.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(connection))
+                {
+                    cmd.CommandText = "INSERT INTO Mitarbeiter(Vorname, Nachname, Kostenfaktor) VALUES (@Vorname, @Nachname, @Kostenfaktor)";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@Vorname", mitarbeiter.Vorname);
+                    cmd.Parameters.AddWithValue("@Nachname", mitarbeiter.Nachname);
+                    cmd.Parameters.AddWithValue("@Kostenfaktor", mitarbeiter.Kostenfaktor);
+                    try
+                    {
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return -1;
+                    }
+                }
+                connection.Close();
+
+                return result;
+            }
+        }
+        
+
+        public static int updateMitarbeiter(MitarbeiterModel mitarbeiter)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                int result = -1;
+
+                connection.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(connection))
+                {
+                    cmd.CommandText = "UPDATE Mitarbeiter SET Vorname=@Vorname, Nachname=@Nachname, Kostenfaktor=@Kostenfaktor WHERE IDMA=@Id";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@Vorname",mitarbeiter.Vorname);
+                    cmd.Parameters.AddWithValue("@Nachname",mitarbeiter.Nachname);
+                    cmd.Parameters.AddWithValue("@Kostenfaktor",mitarbeiter.Kostenfaktor);
+                    cmd.Parameters.AddWithValue("@Id",mitarbeiter.Id);
+                    try
+                    {
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return -1;
+                    }
+                }
+                connection.Close();
+
+                return result;
+            }
+        }
+        public static int delMitarbeiter(int mitarbeiterID)
+        {
+            int result = -1;
+            using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
+            {
+                cnn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                {
+                    cmd.CommandText = "DELETE FROM Mitarbeiter WHERE IDMA = @Id";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@Id", mitarbeiterID);
+                    try
+                    {
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return -1;
+                    }
+                }
+                cnn.Close();
+            }
+            return result;
+        }
+
+
+
+        public static DataTable LadenKfzDT(int kfzID)
+        {
+            DataTable dtk = new DataTable();
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
+                {
+                    cnn.Open();
+                    string sql = "SELECT IDKfz,Kennzeichen,Faktor FROM Kfz WHERE Id = " + kfzID;
+                    if (kfzID == 0)
+                    {
+                        sql = "SELECT IDKfz,Kennzeichen,Faktor FROM Kfz";
+                    }
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
+                    {
+                        using (SQLiteDataAdapter k = new SQLiteDataAdapter(cmd))
                         {
-                            while (reader.Read())
-                            {
-                                MitarbeiterModel ma = new MitarbeiterModel();
-                                ma.Vorname = reader["Vorname"].ToString();
-                                ma.Nachname = reader["Nachname"].ToString();
-                                ma.Kostenfaktor = Convert.ToDecimal(reader["Kfaktor"]);
-                                listma.Add(ma);
-                            }
+                                    k.Fill(dtk);
+                            
+                            
                         }
                     }
                     cnn.Close();
@@ -63,36 +167,90 @@ namespace Library
             }
             catch (SQLiteException e)
             {
-                return e;
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            return listma;
-
+            return dtk;
         }
-        public static void SaveMitarbeiter(MitarbeiterModel mitarbeiter)
+        public static int SaveKfz(KfzModel kfz)
         {
-            string Text = "insert into Mitarbeiter (Vorname,Nachname,Kostenfaktor)values(@Vorname,) "
-        }
-        public static List<KfzModel> LadenKfzListe()
-        {
-
-        }
-        public static void SaveKfz(KfzModel kfz)
-        {
-
-        }
-
-        public static void delmitarbeiter(MitarbeiterModel mitarbeiter)
-        {
-
-            cnn.Execute("delete from Mitarbeiter where IDMA = @Id", mitarbeiter);
-
-        }
-
-        public static void updateKfz(KfzModel kfz)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
-                cnn.Execute("update Kfz set ");
+                int result = -1;
+
+                connection.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(connection))
+                {
+                    cmd.CommandText = "INSERT INTO Kfz(Kennzeichen, Faktor) VALUES (@Kennzeichen, @Faktor)";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@Kennzeichen", kfz.Kennzeichen);
+                    cmd.Parameters.AddWithValue("@Faktor", kfz.Faktor);
+                    try
+                    {
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return -1;
+                    }
+                }
+                connection.Close();
+
+                return result;
+            }
+        }
+        public static int delKfz(int kfzID)
+        {
+            int result = -1;
+            using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
+            {
+                cnn.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(cnn))
+                {
+                    cmd.CommandText = "DELETE FROM Kfz WHERE IDKfz = @Id";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@Id", kfzID);
+                    try
+                    {
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return -1;
+                    }
+                }
+                cnn.Close();
+            }
+            return result;
+        }
+        public static int updateKfz(KfzModel kfz)
+        {
+            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+            {
+                int result = -1;
+
+                connection.Open();
+                using (SQLiteCommand cmd = new SQLiteCommand(connection))
+                {
+                    cmd.CommandText = "UPDATE Kfz SET Kennzeichen = @Kennzeichen, Faktor = @Faktor WHERE (IDKfz = @ID)";
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@Kennzeichen", kfz.Kennzeichen);
+                    cmd.Parameters.AddWithValue("@Faktor", kfz.Faktor);
+                    cmd.Parameters.AddWithValue("@ID", kfz.ID);
+                    try
+                    {
+                        result = cmd.ExecuteNonQuery();
+                    }
+                    catch (SQLiteException e)
+                    {
+                        MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return -1;
+                    }
+                }
+                connection.Close();
+
+                return result;
             }
         }
 

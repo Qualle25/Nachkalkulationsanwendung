@@ -11,23 +11,24 @@
             <ColumnDefinition Width="250*"/>
             <ColumnDefinition Width="250*"/>
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="listboxMitarbeiter" HorizontalAlignment="Left" Height="182" Margin="220,217,0,0" VerticalAlignment="Top" Width="197" SelectionChanged="listboxMitarbeiter_SelectionChanged" />
-        <Button x:Name="Aktualisieren" Content="Aktualisieren" HorizontalAlignment="Left" Height="30" Margin="36,298,0,0" VerticalAlignment="Top" Width="156" Click="Aktualisieren_Click"/>
-        <Button x:Name="addMitarbeiter" Content="Mitarbeiter hinzufügen" HorizontalAlignment="Left" Height="30" Margin="36,260,0,0" VerticalAlignment="Top" Width="156" Click="addMitarbeiter_Click"/>
-        <TextBox x:Name="Vorname" HorizontalAlignment="Left" Height="21" Margin="36,76,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
-        <TextBox x:Name="Nachname" HorizontalAlignment="Left" Height="23" Margin="36,146,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
-        <TextBox x:Name="Kfaktor" HorizontalAlignment="Left" Height="23" Margin="36,222,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
-        <Label Content="Vorname" HorizontalAlignment="Left" Height="30" Margin="36,41,0,0" VerticalAlignment="Top" Width="156"/>
-        <Label Content="Nachname" HorizontalAlignment="Left" Height="24" Margin="36,117,0,0" VerticalAlignment="Top" Width="156"/>
-        <Label Content="Faktor" HorizontalAlignment="Left" Height="29" Margin="36,188,0,0" VerticalAlignment="Top" Width="156"/>
-        <ListBox x:Name="listboxKfz" HorizontalAlignment="Left" Height="182" Margin="206,217,0,0" VerticalAlignment="Top" Width="202" Grid.Column="1"/>
-        <Label Content="Kennzeichen" HorizontalAlignment="Left" Height="26" Margin="13,116,0,0" VerticalAlignment="Top" Width="121" Grid.Column="1"/>
-        <Button x:Name="addKfz" Content="Kfz hinzufügen" HorizontalAlignment="Left" Height="30" Margin="13,332,0,0" VerticalAlignment="Top" Width="144" Click="addKfz_Click" Grid.Column="1"/>
-        <Button x:Name="AktualisiereKfz" Content="Aktualisieren" HorizontalAlignment="Left" Height="25" Margin="13,367,0,0" VerticalAlignment="Top" Width="144" Grid.Column="1" Click="AktualisiereKfz_Click"/>
-        <TextBox x:Name="Kennzeichen" HorizontalAlignment="Left" Height="25" Margin="13,158,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Grid.Column="1"/>
-        <Label Content="Faktor" HorizontalAlignment="Left" Height="28" Margin="13,212,0,0" VerticalAlignment="Top" Width="144" Grid.Column="1"/>
-        <TextBox x:Name="Faktor" HorizontalAlignment="Left" Height="29" Margin="13,260,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="144" Grid.Column="1"/>
-        <Button x:Name="delMitarbeiter" Content="Mitarbeiter entfernen" HorizontalAlignment="Left" Height="30" Margin="36,340,0,0" VerticalAlignment="Top" Width="156" Click="delMitarbeiter_Click"/>
+        <Button x:Name="addMitarbeiter" Content="Mitarbeiter hinzufügen" HorizontalAlignment="Left" Height="28" Margin="313,61,0,0" VerticalAlignment="Top" Width="156" Click="AddMitarbeiter_Click"/>
+        <TextBox x:Name="Vorname" HorizontalAlignment="Left" Height="24" Margin="36,63,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+        <TextBox x:Name="Nachname" HorizontalAlignment="Left" Height="24" Margin="36,118,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+        <TextBox x:Name="Kfaktor" HorizontalAlignment="Left" Height="24" Margin="36,176,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156"/>
+        <Label Content="Vorname" HorizontalAlignment="Left" Height="24" Margin="36,34,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label Content="Nachname" HorizontalAlignment="Left" Height="24" Margin="36,89,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label Content="Faktor" HorizontalAlignment="Left" Height="24" Margin="36,147,0,0" VerticalAlignment="Top" Width="156"/>
+        <Label Content="Kennzeichen" HorizontalAlignment="Left" Height="24" Margin="13,36,0,0" VerticalAlignment="Top" Width="121" Grid.Column="1"/>
+        <Button x:Name="addKfz" Content="Kfz hinzufügen" HorizontalAlignment="Left" Height="28" Margin="276,59,0,0" VerticalAlignment="Top" Width="156" Click="AddKfz_Click" Grid.Column="1"/>
+        <TextBox x:Name="Kennzeichen" HorizontalAlignment="Left" Height="24" Margin="14,63,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Grid.Column="1"/>
+        <Label Content="Faktor" HorizontalAlignment="Left" Height="24" Margin="19,95,0,0" VerticalAlignment="Top" Width="144" Grid.Column="1"/>
+        <TextBox x:Name="Faktor" HorizontalAlignment="Left" Height="24" Margin="14,118,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="156" Grid.Column="1"/>
+        <Button x:Name="delMitarbeiter" Content="Mitarbeiter entfernen" HorizontalAlignment="Left" Height="28" Margin="313,174,0,0" VerticalAlignment="Top" Width="156" Click="DelMitarbeiter_Click"/>
+        <Button x:Name="updateMitarbeiter" Content="Mitarbeiter Update" HorizontalAlignment="Left" Height="28" Margin="313,116,0,0" VerticalAlignment="Top" Width="156" Click="UpdateMitarbeiter_Click"/>
+        <Button x:Name="delKfz" Grid.Column="1" Content="Kfz entfernen" HorizontalAlignment="Left" Height="28" Margin="276,169,0,0" VerticalAlignment="Top" Width="156" Click="DelKfz_Click"/>
+        <Button x:Name="updateKfz" Grid.Column="1" Content="Kfz Update" HorizontalAlignment="Left" Height="28" Margin="276,111,0,0" VerticalAlignment="Top" Width="156" Click="UpdateKfz_Click"/>
+        <DataGrid x:Name="dgMA" ColumnWidth="*" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="36,227,31,18" IsReadOnly="True" SelectionMode="Single" SelectionChanged="dgMA_SelectionChanged"/>
+        <DataGrid x:Name="dgKfz" Grid.Column="1" ColumnWidth="*" HorizontalAlignment="Center" Height="185" Margin="0,231,0,0" IsReadOnly="True" SelectionMode="Single" VerticalAlignment="Top" Width="456" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="dgKfz_SelectionChanged"/>
 
     </Grid>
 </Window>

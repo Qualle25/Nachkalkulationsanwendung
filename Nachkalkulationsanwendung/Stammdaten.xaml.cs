@@ -1,6 +1,7 @@
 ﻿using Library;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,163 +15,188 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xaml;
 
-
-
 namespace Nachkalkulationsanwendung
 {
 
     public partial class Stammdaten : Window
     {
-        List<MitarbeiterModel> Mitarbeiter = new List<MitarbeiterModel>();
-        List<KfzModel> Kfz = new List<KfzModel>();
+
         public Stammdaten()
         {
             InitializeComponent();
 
-            LadenMitarbeiterListe();
-            LadenKfzListe();
+            LadenMitarbeiterDT();
+            LadenKfzDT();
         }
-        private void LadenMitarbeiterListe()
-        {
-            Mitarbeiter = SqliteDataAccess.LadenMitarbeiterListe();
-            VerbindenMitarbeiterListe();
-        }
-        private void LadenKfzListe()
-        {
-            Kfz = SqliteDataAccess.LadenKfzListe();
-            VerbindenKfzListe();
-        }
-        private void VerbindenMitarbeiterListe()
-        {
 
-            listboxMitarbeiter.Items.Clear();
-                foreach (MitarbeiterModel model in Mitarbeiter)
-			    {
-                    listboxMitarbeiter.Items.Add(model);
-			    }
-
-        }
-        private void VerbindenKfzListe()
+        private void LadenMitarbeiterDT()
         {
-            listboxKfz.Items.Clear();
-            foreach (KfzModel model in Kfz)
+            int maID = 0;
+
+            DataTable dt = SqliteDataAccess.LadenMitarbeiterDT(maID);
+            dgMA.ItemsSource = dt.DefaultView;
+        }
+
+        private void LadenKfzDT()
+        {
+            int kfzID = 0;
+            DataTable dtk = SqliteDataAccess.LadenKfzDT(kfzID);
+            dgKfz.ItemsSource = dtk.DefaultView;
+        }
+
+        private void AddMitarbeiter_Click(object sender, RoutedEventArgs e)
+        {
+            MitarbeiterModel m = new()
             {
-                listboxKfz.Items.Add(model);
-            }
-        }
-        public static void SaveMitarbeiter(MitarbeiterModel mitarbeiter)
-        {
-            string Text = "insert into Mitarbeiter (Vorname,Nachname,Kostenfaktor)values(" +Vorname.Text+") "
-        }
+                Vorname = Vorname.Text,
+                Nachname = Nachname.Text
+            };
 
-        private void addMitarbeiter_Click(object sender, RoutedEventArgs e)
-        {
-
-            MitarbeiterModel m = new MitarbeiterModel();
-            m.Vorname = Vorname.Text;
-            m.Nachname = Nachname.Text;
-
-            decimal num = 0;
-
-            bool success = decimal.TryParse(Kfaktor.Text, out num);
-            if (success)
+            if (decimal.TryParse(Kfaktor.Text, out decimal num))
             {
                 m.Kostenfaktor = decimal.Parse(Kfaktor.Text);
                 SqliteDataAccess.SaveMitarbeiter(m);
-                LadenMitarbeiterListe();
+                LadenMitarbeiterDT();
                 
                 Vorname.Text = "";
                 Nachname.Text = "";
                 Kfaktor.Text = "";
             }
             else
-            {
                 MessageBox.Show("Bitte Eingabe prüfen");
-            }
-
-            
         }
 
-        private void addKfz_Click(object sender, RoutedEventArgs e)
+        private void AddKfz_Click(object sender, RoutedEventArgs e)
         {
-            KfzModel f = new KfzModel();
-            f.Kennzeichen = Kennzeichen.Text;
+            KfzModel f = new()
+            {
+                Kennzeichen = Kennzeichen.Text
+            };
 
-            decimal num = 0;
-
-            bool success = decimal.TryParse(Faktor.Text, out num);
-            if (success)
+            if (decimal.TryParse(Faktor.Text, out decimal num))
             {
                 f.Faktor = decimal.Parse(Faktor.Text);
                 SqliteDataAccess.SaveKfz(f);
+                LadenKfzDT();
 
                 Kennzeichen.Text = "";
                 Faktor.Text = "";
             }
             else
-            {
                 MessageBox.Show("Bitte Eingabe prüfen");
-            }
+        }     
 
-            
-        }
-
-        private void AktualisiereKfz_Click(object sender, RoutedEventArgs e)
+        private void DelMitarbeiter_Click(object sender, RoutedEventArgs e)
         {
-            LadenKfzListe();
-        }
-        
+            DataRowView dataRowView = (DataRowView)dgMA.SelectedItem;
 
-        private void delMitarbeiter_Click(object sender, RoutedEventArgs e)
-        {
-            if (listboxMitarbeiter.SelectedItem != null)
+            if (dataRowView != null)
             {
-               
-                //listboxMitarbeiter.Items.Remove(listboxMitarbeiter.SelectedItem);
-                SqliteDataAccess.delmitarbeiter((MitarbeiterModel)listboxMitarbeiter.SelectedItem);
-                LadenMitarbeiterListe();
-                
+                SqliteDataAccess.delMitarbeiter(Convert.ToInt32(dataRowView.Row["IDMA"]));
+                LadenMitarbeiterDT();
+                Vorname.Clear();
+                Nachname.Clear();
+                Kfaktor.Clear();
             }
             else
-            {
                 MessageBox.Show("Bitte Mitarbeiter aus Liste auswählen");
-            }
-
-
         }
 
-        private void listboxMitarbeiter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgMA_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (sender is ListBox lb)
+            DataRowView dataRowView = (DataRowView)dgMA.SelectedItem;
+
+            if (dataRowView != null)
             {
-                if ((e.AddedItems.Count > 0) && (e.AddedItems[0] != null))
-                {
-                    MitarbeiterModel mmo = (MitarbeiterModel)e.AddedItems[0];
-                    Vorname.Text = mmo.Vorname;
-                    Nachname.Text = mmo.Nachname;
-                    Kfaktor.Text = mmo.Kostenfaktor.ToString();
-                }
+                Vorname.Text = dataRowView.Row["Vorname"].ToString();
+                Nachname.Text = dataRowView.Row["Nachname"].ToString();
+                Kfaktor.Text = dataRowView.Row["Kostenfaktor"].ToString();
             }
+        }
 
+        private void UpdateMitarbeiter_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView dataRowView = (DataRowView)dgMA.SelectedItem;
 
-
-
-            /*
-            MitarbeiterModel mmo = (MitarbeiterModel)listboxMitarbeiter.SelectedItem;
-            if (listboxMitarbeiter.SelectedItem != null)
+            if (dataRowView != null)
             {
-                Vorname.Text = mmo.Vorname;
-                Nachname.Text = mmo.Nachname;
-                Kfaktor.Text = mmo.Kostenfaktor.ToString();
+                if (decimal.TryParse(Kfaktor.Text, out decimal faktor))
+                {
+                    MitarbeiterModel m = new()
+                    {
+                        Id = Convert.ToInt32(dataRowView.Row["IDMA"]),
+                        Vorname = Vorname.Text,
+                        Nachname = Nachname.Text,
+                        Kostenfaktor = faktor
+                    };
+
+                    SqliteDataAccess.updateMitarbeiter(m);
+                    LadenMitarbeiterDT();
+
+                    Vorname.Text = "";
+                    Nachname.Text = "";
+                    Kfaktor.Text = "";
+                    dgMA.SelectedIndex = -1;
+                }
+                else
+                    MessageBox.Show("Bitte Eingabe prüfen");
             }
             else
+                MessageBox.Show("Bitte Mitarbeiter aus Liste auswählen");
+        }
+
+        private void UpdateKfz_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView dataView = (DataRowView)dgKfz.SelectedItem;
+            if (dataView != null)
             {
-
-                MessageBox.Show("Mitarbeiter auswählen");
+                if (decimal.TryParse(Faktor.Text, out decimal faktor))
+                {
+                    KfzModel f = new()
+                    {
+                        ID = Convert.ToInt32(dataView.Row["IDKfz"]),
+                        Kennzeichen = Kennzeichen.Text,
+                        Faktor=faktor
+                    };
+                    SqliteDataAccess.updateKfz(f);
+                    LadenKfzDT();
+                    Kennzeichen.Text = "";
+                    Faktor.Text = "";
+                    dgKfz.SelectedIndex = -1;
+                }
+                else
+                    MessageBox.Show("Bitte Eingabe prüfen");
             }
-            */
+            else
+                MessageBox.Show("Bitte Kfz aus Liste auswählen");
+        }
 
+        private void DelKfz_Click(object sender, RoutedEventArgs e)
+        {
+            DataRowView dataView = (DataRowView)dgKfz.SelectedItem;
+
+            if (dataView != null)
+            {
+                SqliteDataAccess.delKfz(Convert.ToInt32(dataView.Row["IDKfz"]));
+                LadenKfzDT();
+                Vorname.Clear();
+                Nachname.Clear();
+                Kfaktor.Clear();
+            }
+
+            else
+                MessageBox.Show("Bitte Kfz aus Liste auswählen");
+        }
+
+        private void dgKfz_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataRowView dataRowView = (DataRowView)dgKfz.SelectedItem;
+
+            if (dataRowView != null)
+            {
+                Kennzeichen.Text = dataRowView.Row["Kennzeichen"].ToString();
+                Faktor.Text = dataRowView.Row["Faktor"].ToString();
+            }
         }
     }
-
 }

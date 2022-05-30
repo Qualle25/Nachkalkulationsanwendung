@@ -13,7 +13,7 @@ namespace Library
         public decimal Faktor { get; set; }
         public override string ToString()
         {
-            return $"{Kennzeichen} {Faktor}";
+            return $"{Kennzeichen}      {Faktor}";
         }
     }
 }
