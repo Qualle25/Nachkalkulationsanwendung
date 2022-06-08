@@ -29,14 +29,13 @@ namespace Nachkalkulationsanwendung
             LadenKfzDT();
         }
 
-        private void LadenMitarbeiterDT()
+        public void LadenMitarbeiterDT()
         {
             int maID = 0;
-
             DataTable dt = SqliteDataAccess.LadenMitarbeiterDT(maID);
             dgMA.ItemsSource = dt.DefaultView;
         }
-
+  
         private void LadenKfzDT()
         {
             int kfzID = 0;

@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Stammdaten" HorizontalAlignment="Left" Height="67" Margin="457,283,0,0" VerticalAlignment="Top" Width="209" Click="Button_Click"/>
+        <Button Content="Stammdaten" HorizontalAlignment="Left" Height="70" Margin="450,280,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click"/>
+        <Button x:Name="btn_calc" Content="Kalkulation" HorizontalAlignment="Left" Height="70" Margin="150,280,0,0" VerticalAlignment="Top" Width="200" Click="btn_calc_Click"/>
 
     </Grid>
 </Window>
