@@ -27,8 +27,14 @@ namespace Nachkalkulationsanwendung
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Stammdaten win2 = new Stammdaten();
+            Stammdaten win2 = new();
             win2.Show();
+        }
+
+        private void btn_calc_Click(object sender, RoutedEventArgs e)
+        {
+            winKalkulation win3 = new();
+            win3.Show();
         }
     }
 }

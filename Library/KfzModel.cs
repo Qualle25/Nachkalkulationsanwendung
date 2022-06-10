@@ -11,6 +11,7 @@ namespace Library
         public int ID { get; set; }
         public string Kennzeichen { get; set; }
         public decimal Faktor { get; set; }
+        public bool Verwendung { get; set; }
         public override string ToString()
         {
             return $"{Kennzeichen}      {Faktor}";
