@@ -65,7 +65,11 @@ namespace Nachkalkulationsanwendung
         {
             if (lbKalk.SelectedItem!=null)
             {
-                ((edit_Kalkulation)Application.Current.MainWindow).tbID.Text = lbKalk.SelectedValuePath;
+                edit_Kalkulation win4 = new();
+                win4.Show();
+                KalkModel model = (KalkModel)lbKalk.SelectedItem; 
+                win4.tbKunde.Text= model.Kunde.ToString();
+                win4.tbID.Text= model.ID.ToString();
             }
         }
     }

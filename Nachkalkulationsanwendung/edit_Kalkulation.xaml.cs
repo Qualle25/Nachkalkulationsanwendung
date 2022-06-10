@@ -27,8 +27,10 @@ namespace Nachkalkulationsanwendung
         public edit_Kalkulation()
         {
             InitializeComponent();
-            LadenMADT();
-            LadenKFZDT();
+            LadenMADTAusschreibung();
+            LadenKFZDTAusschreibung();
+            LadenMADTNachforderung();
+            LadenKFZDTNachforderung();
         }
         
 
@@ -49,16 +51,45 @@ namespace Nachkalkulationsanwendung
             else
                 MessageBox.Show("Bitte Eingabe prüfen");
         }
-        public void LadenMADT()
+        
+        public void LadenMADTAusschreibung()
         {
 
             DataTable dt = SqliteDataAccess.LadenMitarbeiterDT(0);
-            dgMAAnfordern.ItemsSource = dt.DefaultView;
+            dgMAAusAnfordern.ItemsSource = dt.DefaultView;
+            dgMAAusSichten.ItemsSource=dt.DefaultView;
+            dgMAAusBearbeiten.ItemsSource=dt.DefaultView;
+            dgMAAusVorOrt.ItemsSource = dt.DefaultView;
+            dgMAAusRücksprache.ItemsSource = dt.DefaultView;
+            dgMAAusPrüfung.ItemsSource = dt.DefaultView;
+            dgMAAusAbgabe.ItemsSource = dt.DefaultView;
         }
-        public void LadenKFZDT()
+        public void LadenKFZDTAusschreibung()
         {
             DataTable dt = SqliteDataAccess.LadenKfzDT(0);
-                dgKfzAnfordern.ItemsSource = dt.DefaultView;
+            dgKfzAusAnfordern.ItemsSource = dt.DefaultView;
+            dgKfzAusSichten.ItemsSource = dt.DefaultView;
+            dgKfzAusBearbeiten.ItemsSource = dt.DefaultView;
+            dgKfzAusVorOrt.ItemsSource=dt.DefaultView;
+            dgKfzAusRücksprache.ItemsSource = dt.DefaultView;
+            dgKfzAusPrüfung.ItemsSource=dt.DefaultView;
+            dgKfzAusAbgabe.ItemsSource=dt.DefaultView;
+        }
+        public void LadenMADTNachforderung()
+        {
+            DataTable dt=SqliteDataAccess.LadenMitarbeiterDT(0);
+            dgMANachfAbklären.ItemsSource = dt.DefaultView;
+            dgMANachfBearbeiten.ItemsSource= dt.DefaultView;
+            dgMANachfNachfragen.ItemsSource= dt.DefaultView;
+            dgMANachfVersenden.ItemsSource= dt.DefaultView;
+        }
+        public void LadenKFZDTNachforderung()
+        {
+            DataTable dt=SqliteDataAccess.LadenMitarbeiterDT(0);
+            dgKfzNachfAbklären.ItemsSource= dt.DefaultView;
+            dgKfzNachfBearbeiten.ItemsSource = dt.DefaultView;
+            dgKfzNachfNachfragen.ItemsSource = dt.DefaultView;
+            dgKfzNachfVersenden.ItemsSource = dt.DefaultView;
         }
 
         private void btnEDITAnfAus_Click(object sender, RoutedEventArgs e)
