@@ -62,7 +62,7 @@ namespace Nachkalkulationsanwendung
                 Kfaktor.Text = "";
             }
             else
-                MessageBox.Show("Bitte Eingabe prüfen");
+                MessageBox.Show("Bitte geben Sie bei Faktor eine Zahl ein!");
         }
 
         private void AddKfz_Click(object sender, RoutedEventArgs e)
@@ -82,7 +82,7 @@ namespace Nachkalkulationsanwendung
                 Faktor.Text = "";
             }
             else
-                MessageBox.Show("Bitte Eingabe prüfen");
+                MessageBox.Show("Bitte geben Sie bei Faktor eine Zahl ein!");
         }     
 
         private void DelMitarbeiter_Click(object sender, RoutedEventArgs e)
@@ -138,7 +138,7 @@ namespace Nachkalkulationsanwendung
                     dgMA.SelectedIndex = -1;
                 }
                 else
-                    MessageBox.Show("Bitte Eingabe prüfen");
+                    MessageBox.Show("Bitte geben Sie bei Faktor eine Zahl ein!");
             }
             else
                 MessageBox.Show("Bitte Mitarbeiter aus Liste auswählen");
@@ -164,7 +164,7 @@ namespace Nachkalkulationsanwendung
                     dgKfz.SelectedIndex = -1;
                 }
                 else
-                    MessageBox.Show("Bitte Eingabe prüfen");
+                    MessageBox.Show("Bitte geben Sie bei Faktor eine Zahl ein!");
             }
             else
                 MessageBox.Show("Bitte Kfz aus Liste auswählen");
