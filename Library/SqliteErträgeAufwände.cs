@@ -11,18 +11,18 @@ namespace Library
     public class SqliteErträgeAufwände
     {
         protected static string connectionString = "Data Source=DemoDB.db;Version=3;";
-        public static List<Erträge> LadenErtragsListe(int eID)
+        public static List<KalkModel> LadenErtragsListe(int eID)
         {
-            List<Erträge> listert = new();
+            List<KalkModel> listert = new();
             try
             {
                 using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
                 {
                     cnn.Open();
-                    string sql = "SELECT ID,Ertrag,Wert FROM Erträge WHERE ID = " + eID;
+                    string sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Kalkulation WHERE IDErtrag = " + eID;
                     if (eID == 0)
                     {
-                        sql = "SELECT ID,Ertrag,Wert FROM Erträge";
+                        sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Kalkulation";
                     }
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
                     {
@@ -30,11 +30,11 @@ namespace Library
                         {
                             while (reader.Read())
                             {
-                                Erträge e = new()
+                                KalkModel e = new()
                                 {
-                                    ID = Int32.Parse(reader["ID"].ToString()),
+                                    IDErtrag = Int32.Parse(reader["IDErtrag"].ToString()),
                                     Ertrag = reader["Ertrag"].ToString(),
-                                    Wert= Int32.Parse(reader["Wert"].ToString()),
+                                    Ertrag_Wert= Int32.Parse(reader["Wert_Ertrag"].ToString()),
                                 };
                                 listert.Add(e);
                             }
@@ -50,7 +50,7 @@ namespace Library
             return listert;
 
         }
-        public static int SaveErtrag(Erträge ert)
+        public static int SaveErtrag(KalkModel ert)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -59,11 +59,11 @@ namespace Library
                 connection.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(connection))
                 {
-                    cmd.CommandText = "INSERT INTO Erträge(ID, Ertrag, Wert) VALUES (@ID, @Ertrag, @Wert)";
+                    cmd.CommandText = "INSERT INTO Kalkulation(IDErtrag, Ertrag, Wert_Ertrag) VALUES (@IDErtrag, @Ertrag, @Wert_Ertrag)";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@ID", ert.ID);
+                    cmd.Parameters.AddWithValue("@IDErtrag", ert.IDErtrag);
                     cmd.Parameters.AddWithValue("@Ertrag", ert.Ertrag);
-                    cmd.Parameters.AddWithValue("@Wert", ert.Wert);
+                    cmd.Parameters.AddWithValue("@Wert_Ertrag", ert.Ertrag_Wert);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
@@ -79,7 +79,7 @@ namespace Library
                 return result;
             }
         }
-        public static int DelErtrag(Erträge ert)
+        public static int DelErtrag(KalkModel ert)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -87,9 +87,9 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "DELETE FROM Erträge WHERE ID = @ID";
+                    cmd.CommandText = "DELETE FROM Kalkulation WHERE IDErtrag = @IDErtrag";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@ID", ert.ID);
+                    cmd.Parameters.AddWithValue("@IDErtrag", ert.IDErtrag);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
@@ -104,7 +104,7 @@ namespace Library
             }
             return result;
         }
-        public static int UpdateErtrag(Erträge ert)
+        public static int UpdateErtrag(KalkModel ert)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -112,11 +112,11 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "UPDATE Erträge SET Ertrag=@Ertrag, Wert=@Wert WHERE ID = @ID";
+                    cmd.CommandText = "UPDATE Kalkulation SET Ertrag=@Ertrag, Wert_Ertrag=@Wert_Ertrag WHERE IDErtrag = @IDErtrag";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@ID", ert.ID);
+                    cmd.Parameters.AddWithValue("@IDErtrag", ert.IDErtrag);
                     cmd.Parameters.AddWithValue("@Ertrag", ert.Ertrag);
-                    cmd.Parameters.AddWithValue("Wert", ert.Wert);
+                    cmd.Parameters.AddWithValue("Wert_Ertrag", ert.Ertrag_Wert);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
@@ -131,18 +131,18 @@ namespace Library
             }
             return result;
         }
-        public static List<Aufwände> LadenAufwandsListe(int aID)
+        public static List<KalkModel> LadenAufwandsListe(int aID)
         {
-            List<Aufwände> listauf = new();
+            List<KalkModel> listauf = new();
             try
             {
                 using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
                 {
                     cnn.Open();
-                    string sql = "SELECT ID,Aufwand,Wert FROM Aufwände WHERE ID = " + aID;
+                    string sql = "SELECT IDAufwand,Aufwand,Wert_Aufwand FROM Kalkulation WHERE IDAufwand = " + aID;
                     if (aID == 0)
                     {
-                        sql = "SELECT ID,Aufwand,Wert FROM Aufwände";
+                        sql = "SELECT IDAufwand,Aufwand,Wert_Aufwand FROM Kalkulation";
                     }
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
                     {
@@ -150,11 +150,11 @@ namespace Library
                         {
                             while (reader.Read())
                             {
-                                Aufwände a = new()
+                                KalkModel a = new()
                                 {
-                                    ID = Int32.Parse(reader["ID"].ToString()),
+                                    IDAufwand = Int32.Parse(reader["IDAufwand"].ToString()),
                                     Aufwand = reader["Aufwand"].ToString(),
-                                    Wert = Int32.Parse(reader["Wert"].ToString()),
+                                    Wert_Aufwand = Int32.Parse(reader["Wert_Aufwand"].ToString()),
                                 };
                                 listauf.Add(a);
                             }
@@ -170,7 +170,7 @@ namespace Library
             return listauf;
 
         }
-        public static int SaveAufwand(Aufwände auf)
+        public static int SaveAufwand(KalkModel auf)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -179,10 +179,11 @@ namespace Library
                 connection.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(connection))
                 {
-                    cmd.CommandText = "INSERT INTO Aufwäde(ID, Aufwand, Wert) VALUES (@ID, @Aufwand, @Wert)";                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@ID", auf.ID);
+                    cmd.CommandText = "INSERT INTO Kalkulation(IDAufwand, Aufwand, Wert_Aufwand) VALUES (@IDAufwand, @Aufwand, @Wert_Aufwand)";                    
+                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@IDAufwand", auf.IDAufwand);
                     cmd.Parameters.AddWithValue("@Aufwand", auf.Aufwand);
-                    cmd.Parameters.AddWithValue("@Wert", auf.Wert);
+                    cmd.Parameters.AddWithValue("@Wert_Aufwand", auf.Wert_Aufwand);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
@@ -198,7 +199,7 @@ namespace Library
                 return result;
             }
         }
-        public static int DelAufwände(Aufwände auf)
+        public static int DelAufwände(KalkModel auf)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -206,9 +207,9 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "DELETE FROM Aufwände WHERE ID = @ID";
+                    cmd.CommandText = "DELETE FROM Kalkulation WHERE IDAufwand = @IDAufwand";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@ID", auf.ID);
+                    cmd.Parameters.AddWithValue("@IDAufwand", auf.IDAufwand);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
@@ -223,7 +224,7 @@ namespace Library
             }
             return result;
         }
-        public static int UpdateAufwand(Aufwände auf)
+        public static int UpdateAufwand(KalkModel auf)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -231,11 +232,11 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "UPDATE Aufwände SET Aufwand=@Aufwand, Wert=@Wert WHERE ID = @ID";
+                    cmd.CommandText = "UPDATE Kalkulation SET Aufwand=@Aufwand, Wert_Aufwand=@Wert_Aufwand WHERE IDAufwand = @IDAufwand";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@ID", auf.ID);
-                    cmd.Parameters.AddWithValue("@Ertrag", auf.Aufwand);
-                    cmd.Parameters.AddWithValue("Wert", auf.Wert);
+                    cmd.Parameters.AddWithValue("@IDAufwand", auf.IDAufwand);
+                    cmd.Parameters.AddWithValue("@Aufwand", auf.Aufwand);
+                    cmd.Parameters.AddWithValue("Wert_Aufwand", auf.Wert_Aufwand);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
