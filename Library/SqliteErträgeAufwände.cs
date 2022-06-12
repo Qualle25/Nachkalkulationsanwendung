@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace Library
 {
-    internal class SqliteErträgeAufwände
+    public class SqliteErträgeAufwände
     {
         protected static string connectionString = "Data Source=DemoDB.db;Version=3;";
         public static List<Erträge> LadenErtragsListe(int eID)
@@ -170,7 +170,7 @@ namespace Library
             return listauf;
 
         }
-        public static int SaveAufwand(Erträge ert)
+        public static int SaveAufwand(Aufwände auf)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -179,11 +179,10 @@ namespace Library
                 connection.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(connection))
                 {
-                    cmd.CommandText = "INSERT INTO Aufwäde(ID, Ertrag, Wert) VALUES (@ID, @Ertrag, @Wert)";
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@ID", ert.ID);
-                    cmd.Parameters.AddWithValue("@Ertrag", ert.Ertrag);
-                    cmd.Parameters.AddWithValue("@Wert", ert.Wert);
+                    cmd.CommandText = "INSERT INTO Aufwäde(ID, Aufwand, Wert) VALUES (@ID, @Aufwand, @Wert)";                    cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@ID", auf.ID);
+                    cmd.Parameters.AddWithValue("@Aufwand", auf.Aufwand);
+                    cmd.Parameters.AddWithValue("@Wert", auf.Wert);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
@@ -199,7 +198,7 @@ namespace Library
                 return result;
             }
         }
-        public static int DelErtrag(Erträge ert)
+        public static int DelAufwände(Aufwände auf)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -207,9 +206,9 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "DELETE FROM Erträge WHERE ID = @ID";
+                    cmd.CommandText = "DELETE FROM Aufwände WHERE ID = @ID";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@ID", ert.ID);
+                    cmd.Parameters.AddWithValue("@ID", auf.ID);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
@@ -224,7 +223,7 @@ namespace Library
             }
             return result;
         }
-        public static int UpdateErtrag(Erträge ert)
+        public static int UpdateAufwand(Aufwände auf)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -232,11 +231,11 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "UPDATE Erträge SET Ertrag=@Ertrag, Wert=@Wert WHERE ID = @ID";
+                    cmd.CommandText = "UPDATE Aufwände SET Aufwand=@Aufwand, Wert=@Wert WHERE ID = @ID";
                     cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@ID", ert.ID);
-                    cmd.Parameters.AddWithValue("@Ertrag", ert.Ertrag);
-                    cmd.Parameters.AddWithValue("Wert", ert.Wert);
+                    cmd.Parameters.AddWithValue("@ID", auf.ID);
+                    cmd.Parameters.AddWithValue("@Ertrag", auf.Aufwand);
+                    cmd.Parameters.AddWithValue("Wert", auf.Wert);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
