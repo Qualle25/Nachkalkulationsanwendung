@@ -1911,16 +1911,23 @@
                         </StackPanel>
 
                     </TabItem>
-                    <TabItem Header="Sonstige Erlöse">
+                    <TabItem Header="Sonstige Erträge">
                         <Grid>
-                            <TextBox x:Name="tbErlösBetrag" Width="100" Height="30" Margin="430,82,758,466"/>
-                            <Label Content="Betrag" Margin="298,82,902,469"/>
-                            <TextBox x:Name="tbErlösPosition" Width="100" Height="30" Margin="430,27,758,515"/>
-                            <Label Content="Position" Margin="298,27,915,521"/>
-                            <ListBox Width="258" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,27,1020,30"/>
-                            <Button x:Name="btAddErlös" Content="Position hinzufügen" HorizontalAlignment="Left" Height="30" Margin="302,146,0,0" VerticalAlignment="Top" Width="115"/>
-                            <Button x:Name="btUpdateErlös" Content="Position Update" HorizontalAlignment="Left" Height="30" Margin="438,146,0,0" VerticalAlignment="Top" Width="115"/>
-                            <Button x:Name="btDelErlös" Content="Position entfernen" HorizontalAlignment="Left" Height="30" Margin="570,146,0,0" VerticalAlignment="Top" Width="115"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="856*"/>
+                                <ColumnDefinition Width="27*"/>
+                                <ColumnDefinition Width="405*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="tbErlösBetrag" Width="100" Height="30" Margin="428,131,328,414"/>
+                            <Label Content="Betrag" Margin="298,134,470,417"/>
+                            <TextBox x:Name="tbErlösPosition" Width="100" Height="30" Margin="428,78,328,467"/>
+                            <Label Content="Position" Margin="298,79,483,469"/>
+                            <ListBox x:Name="lbErträge" Width="258" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,27,588,30"/>
+                            <Button x:Name="btAddErlös" Content="Position hinzufügen" HorizontalAlignment="Left" Height="30" Margin="298,186,0,0" VerticalAlignment="Top" Width="115" Click="btAddErlös_Click"/>
+                            <Button x:Name="btUpdateErträge" Content="Position Update" HorizontalAlignment="Left" Height="30" Margin="430,186,0,0" VerticalAlignment="Top" Width="115"/>
+                            <Button x:Name="btDelErträge" Content="Position entfernen" HorizontalAlignment="Left" Height="30" Margin="572,186,0,0" VerticalAlignment="Top" Width="115"/>
+                            <TextBox x:Name="tbErtragsID" Width="100" Height="30" Margin="430,26,326,519"/>
+                            <Label Content="Positionsnummer" Margin="298,29,443,522"/>
                         </Grid>
 
 

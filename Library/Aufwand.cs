@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    internal class Aufwände
+    public class Aufwände
     {
         public int ID { get; set; }
         public string Aufwand { get; set; }
