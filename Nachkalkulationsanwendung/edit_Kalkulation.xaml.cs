@@ -24,7 +24,7 @@ namespace Nachkalkulationsanwendung
     {
         public delegate void CalculationSave();
         public event CalculationSave OnCalculationSave;
-        List <Erträge> listertr=new ();
+        List <KalkModel> listertr=new ();
         public edit_Kalkulation()
         {
             InitializeComponent();
@@ -205,7 +205,7 @@ namespace Nachkalkulationsanwendung
             int eID=0;
             listertr = SqliteErträgeAufwände.LadenErtragsListe(eID);
             lbErträge.Items.Clear();
-            foreach (Erträge erträge in listertr)
+            foreach (KalkModel erträge in listertr)
             {
                 lbErträge.Items.Add(erträge);
             }
@@ -213,19 +213,19 @@ namespace Nachkalkulationsanwendung
 
         private void btAddErlös_Click(object sender, RoutedEventArgs e)
         {
-            Erträge er = new();
+            KalkModel er = new();
             {
                 er.Ertrag=tbErlösPosition.Text.ToString();
             }
             if (int.TryParse(tbErlösBetrag.Text, out int num)&& int.TryParse(tbErtragsID.Text,out int num2))
             {
-                er.ID = int.Parse(tbID.Text);
-                er.Wert = int.Parse(tbErlösBetrag.Text);
+                er.IDErtrag = int.Parse(tbID.Text);
+                er.Ertrag_Wert = int.Parse(tbErlösBetrag.Text);
                 SqliteErträgeAufwände.SaveErtrag(er);
                 LadenErtragsListe();
             }
             else
-                MessageBox.Show("Bitte geben Sie eine Zahl bei Auftragsnummer ein");
+                MessageBox.Show("Bitte geben Sie eine Zahl bei Wert ein");
 
         }
 

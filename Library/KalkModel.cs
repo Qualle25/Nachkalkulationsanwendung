@@ -15,7 +15,14 @@ namespace Library
         public int AusschreibungErtrag { get; set; }
         public int AnfordernAusschreibungAufwand { get; set; }
         public int AnfordernAusschreibungErtrag { get; set; }
-        public override string ToString()
+        public int IDErtrag { get; set; }
+        public string Ertrag { get; set; }
+        public decimal Ertrag_Wert { get; set; }
+        public int IDAufwand { get; set; }
+        public string Aufwand { get; set; }
+        public decimal Wert_Aufwand { get; set; }
+    
+    public override string ToString()
         {
             return $"{ID}, {Kunde}";
         }
