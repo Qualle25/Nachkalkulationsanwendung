@@ -34,7 +34,7 @@ namespace Library
                                 {
                                     IDErtrag = Int32.Parse(reader["IDErtrag"].ToString()),
                                     Ertrag = reader["Ertrag"].ToString(),
-                                    Ertrag_Wert= Int32.Parse(reader["Wert_Ertrag"].ToString()),
+                                    Ertrag_Wert= Decimal.Parse(reader["Wert_Ertrag"].ToString()),
                                 };
                                 listert.Add(e);
                             }

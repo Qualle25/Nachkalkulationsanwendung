@@ -24,7 +24,7 @@ namespace Nachkalkulationsanwendung
     {
         public delegate void CalculationSave();
         public event CalculationSave OnCalculationSave;
-        List <KalkModel> listertr=new ();
+        List <KalkModel> listkalk=new ();
         public edit_Kalkulation()
         {
             InitializeComponent();
@@ -203,9 +203,9 @@ namespace Nachkalkulationsanwendung
         public void LadenErtragsListe()
         {
             int eID=0;
-            listertr = SqliteErträgeAufwände.LadenErtragsListe(eID);
+            listkalk = SqliteErträgeAufwände.LadenErtragsListe(eID);
             lbErträge.Items.Clear();
-            foreach (KalkModel erträge in listertr)
+            foreach (KalkModel erträge in listkalk)
             {
                 lbErträge.Items.Add(erträge);
             }
@@ -213,15 +213,15 @@ namespace Nachkalkulationsanwendung
 
         private void btAddErlös_Click(object sender, RoutedEventArgs e)
         {
-            KalkModel er = new();
+            KalkModel model = (KalkModel)sender;
             {
-                er.Ertrag=tbErlösPosition.Text.ToString();
+                model.Ertrag=tbErlösPosition.Text.ToString();
             }
             if (int.TryParse(tbErlösBetrag.Text, out int num)&& int.TryParse(tbErtragsID.Text,out int num2))
             {
-                er.IDErtrag = int.Parse(tbID.Text);
-                er.Ertrag_Wert = int.Parse(tbErlösBetrag.Text);
-                SqliteErträgeAufwände.SaveErtrag(er);
+                model.IDErtrag = int.Parse(tbID.Text);
+                model.Ertrag_Wert = int.Parse(tbErlösBetrag.Text);
+                SqliteErträgeAufwände.SaveErtrag(model);
                 LadenErtragsListe();
             }
             else
