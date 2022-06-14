@@ -41,7 +41,7 @@ namespace Nachkalkulationsanwendung
         }
         private void btn_newCalc_Click(object sender, RoutedEventArgs e)
         {
-            edit_Kalkulation win4 = new();
+            edit_Kalkulation win4 = new(string.Empty);
             win4.Owner = this;
             win4.Show();
         }
@@ -52,8 +52,6 @@ namespace Nachkalkulationsanwendung
             {
                 SQLiteCalc.delKalk((KalkModel)lbKalk.SelectedItem);
                 LadenKalkulationsListe();
-                
-
             }
             else
             {
@@ -65,11 +63,12 @@ namespace Nachkalkulationsanwendung
         {
             if (lbKalk.SelectedItem!=null)
             {
-                edit_Kalkulation win4 = new();
-                win4.Show();
                 KalkModel model = (KalkModel)lbKalk.SelectedItem; 
+                edit_Kalkulation win4 = new(model.ID.ToString());
+                win4.Show();
                 win4.tbKunde.Text= model.Kunde.ToString();
                 win4.tbID.Text= model.ID.ToString();
+
             }
         }
     }
