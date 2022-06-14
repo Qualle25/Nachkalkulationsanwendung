@@ -24,10 +24,14 @@ namespace Nachkalkulationsanwendung
     {
         public delegate void CalculationSave();
         public event CalculationSave OnCalculationSave;
-        List <KalkModel> listkalk=new ();
-        public edit_Kalkulation()
+        List <Erträge> listkalk=new ();
+        public Erträge erträge1;
+        
+        public edit_Kalkulation(string ID)
         {
+            
             InitializeComponent();
+            tbID.Text = ID;
             LadenMADTAusschreibung();
             LadenKFZDTAusschreibung();
             LadenMADTNachforderung();
@@ -58,6 +62,7 @@ namespace Nachkalkulationsanwendung
                 model.ID = int.Parse(tbID.Text);
                 SQLiteCalc.SaveKalk(model);
                 OnCalculationSave?.Invoke();
+                
              
             }
             else
@@ -195,17 +200,20 @@ namespace Nachkalkulationsanwendung
             dgKfzBuArchivierung.ItemsSource = dt.DefaultView;
             dgKfzBuNachkalkualtion.ItemsSource = dt.DefaultView;
         }
-        private void btnEDITAnfAus_Click(object sender, RoutedEventArgs e)
-        {
-            dataKalkulation win5 = new dataKalkulation();
-            win5.Show();
-        }
+        //private void btnEDITAnfAus_Click(object sender, RoutedEventArgs e)
+        //{
+        //    dataKalkulation win5 = new dataKalkulation();
+        //    win5.Show();
+        //}
+
         public void LadenErtragsListe()
         {
-            int eID=0;
-            listkalk = SqliteErträgeAufwände.LadenErtragsListe(eID);
+            if (int.TryParse(tbID.Text, out int num0))
+            {
+                listkalk = SqliteErträgeAufwände.LadenErtragsListe(num0);
+            }         
             lbErträge.Items.Clear();
-            foreach (KalkModel erträge in listkalk)
+            foreach (Erträge erträge in listkalk)
             {
                 lbErträge.Items.Add(erträge);
             }
@@ -213,20 +221,69 @@ namespace Nachkalkulationsanwendung
 
         private void btAddErlös_Click(object sender, RoutedEventArgs e)
         {
-            KalkModel model = (KalkModel)sender;
+            if (decimal.TryParse(tbErlösBetrag.Text, out decimal num)&& int.TryParse(tbErtragsID.Text,out int num2)&& int.TryParse(tbID.Text, out int num3))
             {
-                model.Ertrag=tbErlösPosition.Text.ToString();
-            }
-            if (int.TryParse(tbErlösBetrag.Text, out int num)&& int.TryParse(tbErtragsID.Text,out int num2))
-            {
-                model.IDErtrag = int.Parse(tbID.Text);
-                model.Ertrag_Wert = int.Parse(tbErlösBetrag.Text);
-                SqliteErträgeAufwände.SaveErtrag(model);
+                Erträge er = new();
+                er.IDErtrag = num2;
+                er.ID = num3;
+                er.Ertrag_Wert = num;
+                er.Ertrag =tbErlösPosition.Text.ToString();
+                SqliteErträgeAufwände.SaveErtrag(er);
                 LadenErtragsListe();
             }
             else
-                MessageBox.Show("Bitte geben Sie eine Zahl bei Wert ein");
+                MessageBox.Show("Bitte geben Sie eine Zahl bei Betrag ein");
 
+        }
+
+        private void btUpdateErträge_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbErträge.SelectedItem != null)
+            {
+                if (decimal.TryParse(tbErlösBetrag.Text, out decimal num) && int.TryParse(tbErtragsID.Text, out int num2) && int.TryParse(tbID.Text, out int num3))
+                {
+                    Erträge ert = new();
+                    ert.IDErtrag = num2;
+                    ert.ID = num3;
+                    ert.Ertrag_Wert = num;
+                    SqliteErträgeAufwände.UpdateErtrag((Erträge)lbErträge.SelectedItem);
+                    LadenErtragsListe();
+                }
+                else
+                    MessageBox.Show("Bitte geben Sie eine Zahl bei Betrag ein");
+            }
+            else
+            {
+                MessageBox.Show("Bitte Ertrag aus Liste auswählen");
+            }
+        }
+
+        private void btDelErträge_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbErträge.SelectedItem != null)
+            {
+                SqliteErträgeAufwände.DelErtrag((Erträge)lbErträge.SelectedItem);
+                LadenErtragsListe();
+                tbErlösPosition.Clear();
+                tbErtragsID.Clear();
+                tbErlösBetrag.Clear();
+
+            }
+            else
+            {
+                MessageBox.Show("Bitte Kalkualtions aus Liste auswählen");
+            }
+        }
+
+        private void lbErträge_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbErträge.SelectedItem!=null)
+            {
+                Erträge er = (Erträge)lbErträge.SelectedItem;
+                tbErtragsID.Text=er.IDErtrag.ToString();
+                tbErlösBetrag.Text=er.Ertrag_Wert.ToString();
+                tbErlösPosition.Text=er.Ertrag.ToString();
+            }
         }
 
 

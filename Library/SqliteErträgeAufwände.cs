@@ -11,30 +11,30 @@ namespace Library
     public class SqliteErträgeAufwände
     {
         protected static string connectionString = "Data Source=DemoDB.db;Version=3;";
-        public static List<KalkModel> LadenErtragsListe(int eID)
+        public static List<Erträge> LadenErtragsListe(int eID)
         {
-            List<KalkModel> listert = new();
+            List<Erträge> listert = new();
             try
             {
                 using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
                 {
                     cnn.Open();
-                    string sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Kalkulation WHERE IDErtrag = " + eID;
-                    if (eID == 0)
-                    {
-                        sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Kalkulation";
-                    }
+                    string sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Erträge WHERE ID= " + eID;
+                    //if (eID == 0)
+                    //{
+                    //    sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Erträge";
+                    //}
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
                     {
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
                         {
                             while (reader.Read())
                             {
-                                KalkModel e = new()
+                                Erträge e = new()
                                 {
-                                    IDErtrag = Int32.Parse(reader["IDErtrag"].ToString()),
+                                    IDErtrag = int.Parse(reader["IDErtrag"].ToString()),
                                     Ertrag = reader["Ertrag"].ToString(),
-                                    Ertrag_Wert= Decimal.Parse(reader["Wert_Ertrag"].ToString()),
+                                    Ertrag_Wert= decimal.Parse(reader["Wert_Ertrag"].ToString())
                                 };
                                 listert.Add(e);
                             }
@@ -50,7 +50,7 @@ namespace Library
             return listert;
 
         }
-        public static int SaveErtrag(KalkModel ert)
+        public static int SaveErtrag(Erträge ert)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -59,9 +59,10 @@ namespace Library
                 connection.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(connection))
                 {
-                    cmd.CommandText = "INSERT INTO Kalkulation(IDErtrag, Ertrag, Wert_Ertrag) VALUES (@IDErtrag, @Ertrag, @Wert_Ertrag)";
+                    cmd.CommandText = "INSERT INTO Erträge(IDErtrag, ID, Ertrag, Wert_Ertrag) VALUES (@IDErtrag, @ID, @Ertrag, @Wert_Ertrag)";
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@IDErtrag", ert.IDErtrag);
+                    cmd.Parameters.AddWithValue("@ID", ert.ID);
                     cmd.Parameters.AddWithValue("@Ertrag", ert.Ertrag);
                     cmd.Parameters.AddWithValue("@Wert_Ertrag", ert.Ertrag_Wert);
                     try
@@ -79,7 +80,7 @@ namespace Library
                 return result;
             }
         }
-        public static int DelErtrag(KalkModel ert)
+        public static int DelErtrag(Erträge ert)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -87,7 +88,7 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "DELETE FROM Kalkulation WHERE IDErtrag = @IDErtrag";
+                    cmd.CommandText = "DELETE FROM Erträge WHERE IDErtrag = @IDErtrag";
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@IDErtrag", ert.IDErtrag);
                     try
@@ -104,7 +105,7 @@ namespace Library
             }
             return result;
         }
-        public static int UpdateErtrag(KalkModel ert)
+        public static int UpdateErtrag(Erträge ert)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -112,7 +113,7 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "UPDATE Kalkulation SET Ertrag=@Ertrag, Wert_Ertrag=@Wert_Ertrag WHERE IDErtrag = @IDErtrag";
+                    cmd.CommandText = "UPDATE Erträge SET Ertrag=@Ertrag, Wert_Ertrag=@Wert_Ertrag WHERE IDErtrag = @IDErtrag";
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@IDErtrag", ert.IDErtrag);
                     cmd.Parameters.AddWithValue("@Ertrag", ert.Ertrag);
@@ -131,9 +132,9 @@ namespace Library
             }
             return result;
         }
-        public static List<KalkModel> LadenAufwandsListe(int aID)
+        public static List<Aufwände> LadenAufwandsListe(int aID)
         {
-            List<KalkModel> listauf = new();
+            List<Aufwände> listauf = new();
             try
             {
                 using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -150,7 +151,7 @@ namespace Library
                         {
                             while (reader.Read())
                             {
-                                KalkModel a = new()
+                                Aufwände a = new()
                                 {
                                     IDAufwand = Int32.Parse(reader["IDAufwand"].ToString()),
                                     Aufwand = reader["Aufwand"].ToString(),
@@ -170,7 +171,7 @@ namespace Library
             return listauf;
 
         }
-        public static int SaveAufwand(KalkModel auf)
+        public static int SaveAufwand(Aufwände auf)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -199,7 +200,7 @@ namespace Library
                 return result;
             }
         }
-        public static int DelAufwände(KalkModel auf)
+        public static int DelAufwände(Aufwände auf)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -224,7 +225,7 @@ namespace Library
             }
             return result;
         }
-        public static int UpdateAufwand(KalkModel auf)
+        public static int UpdateAufwand(Aufwände auf)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
