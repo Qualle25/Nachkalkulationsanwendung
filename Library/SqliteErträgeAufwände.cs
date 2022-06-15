@@ -20,10 +20,10 @@ namespace Library
                 {
                     cnn.Open();
                     string sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Erträge WHERE ID= " + eID;
-                    //if (eID == 0)
-                    //{
-                    //    sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Erträge";
-                    //}
+                    if (eID == 0)
+                    {
+                        sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Erträge";
+                    }
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
                     {
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -140,10 +140,10 @@ namespace Library
                 using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
                 {
                     cnn.Open();
-                    string sql = "SELECT IDAufwand,Aufwand,Wert_Aufwand FROM Kalkulation WHERE IDAufwand = " + aID;
+                    string sql = "SELECT IDAufwand,Aufwand,Wert_Aufwand FROM Aufwände WHERE ID= " + aID;
                     if (aID == 0)
                     {
-                        sql = "SELECT IDAufwand,Aufwand,Wert_Aufwand FROM Kalkulation";
+                        sql = "SELECT IDAufwand,Aufwand,Wert_Aufwand FROM Aufwände";
                     }
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
                     {

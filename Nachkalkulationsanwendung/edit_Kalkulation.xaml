@@ -1901,16 +1901,6 @@
                             </DataGrid>
                         </Grid>
                     </TabItem>
-                    <TabItem Header="Sonstige Aufwände">
-                        <StackPanel>
-                            <ListBox x:Name="lbAufwände" Width="300" Height="100"/>
-                            <TextBox x:Name="tbAufwandBetrag" Width="100"/>
-                            <Label Content="Betrag" Width="150"/>
-                            <TextBox x:Name="tbAufwandPosition" Width="100"/>
-                            <Label Content="Position" Width="150"/>
-                        </StackPanel>
-
-                    </TabItem>
                     <TabItem Header="Sonstige Erträge">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -1919,19 +1909,40 @@
                                 <ColumnDefinition Width="405*"/>
                             </Grid.ColumnDefinitions>
                             <TextBox x:Name="tbErlösBetrag" Width="100" Height="30" Margin="428,131,328,414"/>
-                            <Label Content="Betrag" Margin="298,134,470,417"/>
+                            <Label Content="Betrag" Margin="298,134,470,414"/>
                             <TextBox x:Name="tbErlösPosition" Width="100" Height="30" Margin="428,78,328,467"/>
                             <Label Content="Position" Margin="298,79,483,469"/>
                             <ListBox x:Name="lbErträge" Width="258" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,27,588,30" SelectionChanged="lbErträge_SelectionChanged"/>
-                            <Button x:Name="btAddErlös" Content="Position hinzufügen" HorizontalAlignment="Left" Height="30" Margin="298,186,0,0" VerticalAlignment="Top" Width="115" Click="btAddErlös_Click"/>
-                            <Button x:Name="btUpdateErträge" Content="Position Update" HorizontalAlignment="Left" Height="30" Margin="430,186,0,0" VerticalAlignment="Top" Width="115" Click="btUpdateErträge_Click"/>
-                            <Button x:Name="btDelErträge" Content="Position entfernen" HorizontalAlignment="Left" Height="30" Margin="572,186,0,0" VerticalAlignment="Top" Width="115" Click="btDelErträge_Click"/>
+                            <Button x:Name="btAddErlös" Content="Ertrag hinzufügen" HorizontalAlignment="Left" Height="30" Margin="298,186,0,0" VerticalAlignment="Top" Width="115" Click="btAddErlös_Click"/>
+                            <Button x:Name="btUpdateErträge" Content="Ertrag Update" HorizontalAlignment="Left" Height="30" Margin="430,186,0,0" VerticalAlignment="Top" Width="115" Click="btUpdateErträge_Click"/>
+                            <Button x:Name="btDelErträge" Content="Ertrag entfernen" HorizontalAlignment="Left" Height="30" Margin="572,186,0,0" VerticalAlignment="Top" Width="115" Click="btDelErträge_Click"/>
                             <TextBox x:Name="tbErtragsID" Width="100" Height="30" Margin="430,26,326,519"/>
                             <Label Content="Positionsnummer" Margin="298,29,443,522"/>
                         </Grid>
 
 
                     </TabItem>
+                    <TabItem Header="Sonstige Aufwände">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="856*"/>
+                                <ColumnDefinition Width="27*"/>
+                                <ColumnDefinition Width="405*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox x:Name="tbAufwandBetrag" Width="100" Height="30" Margin="403,132,353,413"/>
+                            <TextBox x:Name="tbAufwandPosition" Width="100" Height="30" Margin="403,72,353,473"/>
+                            <Label Content="Betrag" Margin="278,132,503,413"/>
+                            <Label Content="Position" Margin="278,78,468,473"/>
+                            <ListBox x:Name="lbAufwände" Width="240" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,18,606,40" SelectionChanged="lbAufwände_SelectionChanged"/>
+                            <Label Content="Positionsnummer" HorizontalAlignment="Left" Height="38" Margin="278,18,0,0" VerticalAlignment="Top" Width="110"/>
+                            <TextBox x:Name="tbAufwandsID" Height="30" Width="100" HorizontalAlignment="Left" Margin="403,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <Button x:Name="btAddAufwand"  Content="Aufwand hinzufügen" HorizontalAlignment="Left" Height="30" Margin="283,216,0,0" VerticalAlignment="Top" Width="120" Click="btAddAufwand_Click"/>
+                            <Button x:Name="btUpdateAufwand" Content="Aufwand Update" HorizontalAlignment="Left" Height="30" Margin="428,216,0,0" VerticalAlignment="Top" Width="100" Click="btUpdateAufwand_Click"/>
+                            <Button x:Name="btDelAufwand" Content="Aufwand entfernen" HorizontalAlignment="Left" Height="30" Margin="574,216,0,0" VerticalAlignment="Top" Width="100" Click="btDelAufwand_Click"/>
+                        </Grid>
+
+                    </TabItem>
+
                 </TabControl>
             </TabItem>
             <TabItem Header="Buchhaltung">

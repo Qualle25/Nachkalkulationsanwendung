@@ -24,7 +24,8 @@ namespace Nachkalkulationsanwendung
     {
         public delegate void CalculationSave();
         public event CalculationSave OnCalculationSave;
-        List <Erträge> listkalk=new ();
+        List <Erträge> listert=new ();
+        List<Aufwände> listauf = new();
         public Erträge erträge1;
         
         public edit_Kalkulation(string ID)
@@ -47,6 +48,7 @@ namespace Nachkalkulationsanwendung
             LadenMADTBuchhaltung();
             LadenKFZBuchhaltung();
             LadenErtragsListe();
+            LadenAufwandsliste();
         }
         
 
@@ -210,10 +212,10 @@ namespace Nachkalkulationsanwendung
         {
             if (int.TryParse(tbID.Text, out int num0))
             {
-                listkalk = SqliteErträgeAufwände.LadenErtragsListe(num0);
+                listert = SqliteErträgeAufwände.LadenErtragsListe(num0);
             }         
             lbErträge.Items.Clear();
-            foreach (Erträge erträge in listkalk)
+            foreach (Erträge erträge in listert)
             {
                 lbErträge.Items.Add(erträge);
             }
@@ -283,6 +285,56 @@ namespace Nachkalkulationsanwendung
                 tbErtragsID.Text=er.IDErtrag.ToString();
                 tbErlösBetrag.Text=er.Ertrag_Wert.ToString();
                 tbErlösPosition.Text=er.Ertrag.ToString();
+            }
+        }
+        public void LadenAufwandsliste()
+        {
+            if(int.TryParse(tbID.Text, out int num0))
+            {
+                listauf = SqliteErträgeAufwände.LadenAufwandsListe(num0);
+            }
+            lbAufwände.Items.Clear();
+            foreach (Aufwände aufwände in listauf)
+            {
+                lbAufwände.Items.Add(aufwände);
+            }
+        }
+
+        private void btAddAufwand_Click(object sender, RoutedEventArgs e)
+        {
+            if (decimal.TryParse(tbAufwandBetrag.Text, out decimal num) && int.TryParse(tbAufwandsID.Text, out int num2) && int.TryParse(tbID.Text, out int num3))
+            {
+                Aufwände auf = new();
+                auf.IDAufwand = num2;
+                auf.ID = num3;
+                auf.Wert_Aufwand = num;
+                auf.Aufwand = tbErlösPosition.Text.ToString();
+                SqliteErträgeAufwände.SaveAufwand(auf);
+                LadenAufwandsliste();
+            }
+            else
+                MessageBox.Show("Bitte geben Sie eine Zahl bei Betrag ein");
+
+        }
+
+        private void btUpdateAufwand_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btDelAufwand_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void lbAufwände_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbAufwände.SelectedItem != null)
+            {
+                Aufwände auf = (Aufwände)lbAufwände.SelectedItem;
+                tbAufwandsID.Text = auf.IDAufwand.ToString();
+                tbAufwandBetrag.Text = auf.Wert_Aufwand.ToString();
+                tbAufwandPosition.Text = auf.Aufwand.ToString();
             }
         }
 
