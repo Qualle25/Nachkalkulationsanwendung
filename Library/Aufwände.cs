@@ -12,5 +12,9 @@ namespace Library
         public int ID { get; set; }
         public string Aufwand { get; set; }
         public decimal Wert_Aufwand { get; set; }
+        public override string ToString()
+        {
+            return $"{IDAufwand}    {Aufwand}     {Wert_Aufwand}";
+        }
     }
 }
