@@ -334,7 +334,7 @@ namespace Nachkalkulationsanwendung
                 Aufwände auf = (Aufwände)lbAufwände.SelectedItem;
                 tbAufwandsID.Text = auf.IDAufwand.ToString();
                 tbAufwandBetrag.Text = auf.Wert_Aufwand.ToString();
-                tbAufwandPosition = er.Ertrag.ToString();
+                tbAufwandPosition = auf.Aufwand.ToString();
             }
         }
 
