@@ -26,7 +26,7 @@ namespace Nachkalkulationsanwendung
         public event CalculationSave OnCalculationSave;
         List <Erträge> listert=new ();
         List<Aufwände> listauf = new();
-        public Erträge erträge1;
+        List<Positionen> listpos = new();
         
         public edit_Kalkulation(string ID)
         {
@@ -48,7 +48,7 @@ namespace Nachkalkulationsanwendung
             LadenMADTBuchhaltung();
             LadenKFZBuchhaltung();
             LadenErtragsListe();
-            LadenAufwandsliste();
+            LadenAufwandsListe();
         }
         
 
@@ -62,7 +62,7 @@ namespace Nachkalkulationsanwendung
             if (int.TryParse(tbID.Text, out int num))
             {
                 model.ID = int.Parse(tbID.Text);
-                SQLiteCalc.SaveKalk(model);
+                SqliteKalk.SaveKalk(model);
                 OnCalculationSave?.Invoke();
                 
              
@@ -74,7 +74,7 @@ namespace Nachkalkulationsanwendung
         public void LadenMADTAusschreibung()
         {
 
-            DataTable dt = SqliteDataAccess.LadenMitarbeiterDT(0);
+            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
             dgMAAusAnfordern.ItemsSource = dt.DefaultView;
             dgMAAusSichten.ItemsSource=dt.DefaultView;
             dgMAAusBearbeiten.ItemsSource=dt.DefaultView;
@@ -85,7 +85,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTAusschreibung()
         {
-            DataTable dt = SqliteDataAccess.LadenKfzDT(0);
+            DataTable dt = SqliteMitarbeiterKFZ.LadenKfzDT(0);
             dgKfzAusAnfordern.ItemsSource = dt.DefaultView;
             dgKfzAusSichten.ItemsSource = dt.DefaultView;
             dgKfzAusBearbeiten.ItemsSource = dt.DefaultView;
@@ -96,7 +96,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTNachforderung()
         {
-            DataTable dt=SqliteDataAccess.LadenMitarbeiterDT(0);
+            DataTable dt=SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
             dgMANachfAbklären.ItemsSource = dt.DefaultView;
             dgMANachfBearbeiten.ItemsSource= dt.DefaultView;
             dgMANachfNachfragen.ItemsSource= dt.DefaultView;
@@ -104,7 +104,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTNachforderung()
         {
-            DataTable dt=SqliteDataAccess.LadenKfzDT(0);
+            DataTable dt=SqliteMitarbeiterKFZ.LadenKfzDT(0);
             dgKfzNachfAbklären.ItemsSource= dt.DefaultView;
             dgKfzNachfBearbeiten.ItemsSource = dt.DefaultView;
             dgKfzNachfNachfragen.ItemsSource = dt.DefaultView;
@@ -112,7 +112,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTNachtragsangebot()
         {
-            DataTable dt=SqliteDataAccess.LadenMitarbeiterDT(0); 
+            DataTable dt=SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0); 
             dgMANachtrAbklären.ItemsSource=dt.DefaultView;
             dgMANachtrErstellen.ItemsSource= dt.DefaultView;
             dgMANachtrPrüfen.ItemsSource= dt.DefaultView;
@@ -120,7 +120,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTNachtragsangebot()
         {
-            DataTable dt = SqliteDataAccess.LadenKfzDT(0);
+            DataTable dt = SqliteMitarbeiterKFZ.LadenKfzDT(0);
             dgKfzNachtrAbklären.ItemsSource = dt.DefaultView;
             dgKfzNachtrErstellen.ItemsSource = dt.DefaultView;
             dgKfzNachtrPrüfem.ItemsSource= dt.DefaultView;
@@ -128,7 +128,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTAuftrag()
         {
-            DataTable dt = SqliteDataAccess.LadenMitarbeiterDT(0); 
+            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0); 
             dgMAAuftrErstellen.ItemsSource= dt.DefaultView;
             dgMAAuftrVorOrt.ItemsSource= dt.DefaultView;
             dgMAAuftrÄnderung.ItemsSource= dt.DefaultView;
@@ -138,7 +138,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTAuftrag()
         {
-            DataTable dt=SqliteDataAccess.LadenKfzDT(0);
+            DataTable dt=SqliteMitarbeiterKFZ.LadenKfzDT(0);
             dgKfzAuftrErstellen.ItemsSource = dt.DefaultView;
             dgKfzAuftrVorOrt.ItemsSource= dt.DefaultView;
             dgKfzAuftrÄnderung.ItemsSource= dt.DefaultView;
@@ -148,7 +148,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTLager()
         {
-            DataTable dt = SqliteDataAccess.LadenMitarbeiterDT(0);
+            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
             dgMALaWarenannahme.ItemsSource= dt.DefaultView;
             dgMALaWareneinlagerung.ItemsSource= dt.DefaultView;
             dgMALaKommissionieren.ItemsSource= dt.DefaultView;
@@ -158,7 +158,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTLager()
         {
-            DataTable dt = SqliteDataAccess.LadenKfzDT(0);
+            DataTable dt = SqliteMitarbeiterKFZ.LadenKfzDT(0);
             dgKfzLaWarenannahme.ItemsSource = dt.DefaultView;
             dgKfzLaWareneinlagerung.ItemsSource = dt.DefaultView;
             dgKfzLaKommissionieren.ItemsSource = dt.DefaultView;
@@ -168,7 +168,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTTechnik()
         {
-            DataTable dt=SqliteDataAccess.LadenMitarbeiterDT(0);
+            DataTable dt=SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
             dgMATeRücksprache.ItemsSource = dt.DefaultView;
             dgMATeAuspacken.ItemsSource = dt.DefaultView;
             dgMATeDLintern.ItemsSource = dt.DefaultView;
@@ -178,7 +178,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTTechnik()
         {
-            DataTable dt=SqliteDataAccess.LadenKfzDT(0);
+            DataTable dt=SqliteMitarbeiterKFZ.LadenKfzDT(0);
             dgKfzTeRücksprache.ItemsSource= dt.DefaultView;
             dgKfzTeAuspacken.ItemsSource= dt.DefaultView;
             dgKfzTeDLintern.ItemsSource= dt.DefaultView;
@@ -188,7 +188,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTBuchhaltung()
         {
-            DataTable dt = SqliteDataAccess.LadenMitarbeiterDT(0);
+            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
             dgMABuEinpflegen.ItemsSource= dt.DefaultView;
             dgMABuPrüfung.ItemsSource= dt.DefaultView;
             dgMABuArchivierung.ItemsSource=dt.DefaultView;
@@ -196,17 +196,13 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZBuchhaltung()
         {
-            DataTable dt=SqliteDataAccess.LadenKfzDT(0);
+            DataTable dt=SqliteMitarbeiterKFZ.LadenKfzDT(0);
             dgKfzBuEinpflegen.ItemsSource = dt.DefaultView;
             dgKfzBuPrüfung.ItemsSource = dt.DefaultView;
             dgKfzBuArchivierung.ItemsSource = dt.DefaultView;
             dgKfzBuNachkalkualtion.ItemsSource = dt.DefaultView;
         }
-        //private void btnEDITAnfAus_Click(object sender, RoutedEventArgs e)
-        //{
-        //    dataKalkulation win5 = new dataKalkulation();
-        //    win5.Show();
-        //}
+
 
         public void LadenErtragsListe()
         {
@@ -217,19 +213,26 @@ namespace Nachkalkulationsanwendung
             lbErträge.Items.Clear();
             foreach (Erträge erträge in listert)
             {
+                if(lbErträge.Items.Cast<Erträge>().Count(x => x.IDErtrag == erträge.IDErtrag) > 0)
+                {
+                    MessageBox.Show("Bitte vergeben Sie unterschiedliche Positionsnummern");
+                }
+                else
                 lbErträge.Items.Add(erträge);
+
             }
         }
 
         private void btAddErlös_Click(object sender, RoutedEventArgs e)
         {
+
             if (decimal.TryParse(tbErlösBetrag.Text, out decimal num)&& int.TryParse(tbErtragsID.Text,out int num2)&& int.TryParse(tbID.Text, out int num3))
             {
                 Erträge er = new();
                 er.IDErtrag = num2;
                 er.ID = num3;
                 er.Ertrag_Wert = num;
-                er.Ertrag =tbErlösPosition.Text.ToString();
+                er.Ertrag =tbErlösPosition.Text;
                 SqliteErträgeAufwände.SaveErtrag(er);
                 LadenErtragsListe();
             }
@@ -248,7 +251,8 @@ namespace Nachkalkulationsanwendung
                     ert.IDErtrag = num2;
                     ert.ID = num3;
                     ert.Ertrag_Wert = num;
-                    SqliteErträgeAufwände.UpdateErtrag((Erträge)lbErträge.SelectedItem);
+                    ert.Ertrag = tbErlösPosition.Text;
+                    SqliteErträgeAufwände.UpdateErtrag(ert);
                     LadenErtragsListe();
                 }
                 else
@@ -273,7 +277,7 @@ namespace Nachkalkulationsanwendung
             }
             else
             {
-                MessageBox.Show("Bitte Kalkualtions aus Liste auswählen");
+                MessageBox.Show("Bitte Position aus Liste auswählen");
             }
         }
 
@@ -287,16 +291,23 @@ namespace Nachkalkulationsanwendung
                 tbErlösPosition.Text=er.Ertrag.ToString();
             }
         }
-        public void LadenAufwandsliste()
+        public void LadenAufwandsListe()
         {
-            if(int.TryParse(tbID.Text, out int num0))
+            if (int.TryParse(tbID.Text, out int num0))
             {
                 listauf = SqliteErträgeAufwände.LadenAufwandsListe(num0);
             }
             lbAufwände.Items.Clear();
             foreach (Aufwände aufwände in listauf)
             {
-                lbAufwände.Items.Add(aufwände);
+                //if (lbErträge.Items.Contains(erträge.IDErtrag)) <- funktioniert nicht
+                if (lbAufwände.Items.Cast<Aufwände>().Count(x => x.IDAufwand == aufwände.IDAufwand) > 0)
+                {
+                    MessageBox.Show("Bitte vergeben Sie unterschiedliche Positionsnummern");
+                }
+                else
+                    lbAufwände.Items.Add(aufwände);
+
             }
         }
 
@@ -308,9 +319,9 @@ namespace Nachkalkulationsanwendung
                 auf.IDAufwand = num2;
                 auf.ID = num3;
                 auf.Wert_Aufwand = num;
-                auf.Aufwand = tbErlösPosition.Text.ToString();
+                auf.Aufwand = tbAufwandPosition.Text.ToString();
                 SqliteErträgeAufwände.SaveAufwand(auf);
-                LadenAufwandsliste();
+                LadenAufwandsListe();
             }
             else
                 MessageBox.Show("Bitte geben Sie eine Zahl bei Betrag ein");
@@ -319,12 +330,42 @@ namespace Nachkalkulationsanwendung
 
         private void btUpdateAufwand_Click(object sender, RoutedEventArgs e)
         {
-
+            if (lbAufwände.SelectedItem != null)
+            {
+                if (decimal.TryParse(tbAufwandBetrag.Text, out decimal num) && int.TryParse(tbAufwandsID.Text, out int num2) && int.TryParse(tbID.Text, out int num3))
+                {
+                    Aufwände auf = new();
+                    auf.IDAufwand = num2;
+                    auf.ID = num3;
+                    auf.Wert_Aufwand = num;
+                    auf.Aufwand = tbAufwandPosition.Text;
+                    SqliteErträgeAufwände.UpdateAufwand(auf);
+                    LadenAufwandsListe();
+                }
+                else
+                    MessageBox.Show("Bitte geben Sie eine Zahl bei Betrag ein");
+            }
+            else
+            {
+                MessageBox.Show("Bitte Ertrag aus Liste auswählen");
+            }
         }
 
         private void btDelAufwand_Click(object sender, RoutedEventArgs e)
         {
+            if (lbAufwände.SelectedItem != null)
+            {
+                SqliteErträgeAufwände.DelAufwände((Aufwände)lbAufwände.SelectedItem);
+                LadenAufwandsListe();
+                tbAufwandPosition.Clear();
+                tbAufwandsID.Clear();
+                tbAufwandBetrag.Clear();
 
+            }
+            else
+            {
+                MessageBox.Show("Bitte Position aus Liste auswählen");
+            }
         }
 
         private void lbAufwände_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -337,12 +378,100 @@ namespace Nachkalkulationsanwendung
                 tbAufwandPosition.Text = auf.Aufwand.ToString();
             }
         }
+        public void LadenPositionsListe()
+        {
+            if (int.TryParse(tbID.Text, out int num0))
+            {
+                listpos = SqlitePositionen.LadenPositionsListe(num0);
+            }
+            lbPositionen.Items.Clear();
+            foreach (Positionen positionen in listpos)
+            {
+                //if (lbErträge.Items.Contains(erträge.IDErtrag))
+                if (lbPositionen.Items.Cast<Positionen>().Count(x => x.PositionID == positionen.PositionID) > 0)
+                {
+                    MessageBox.Show("Bitte vergeben Sie unterschiedliche Positionsnummern");
+                }
+                else
+                    lbPositionen.Items.Add(positionen);
+
+            }
+        }
+
+        private void btAddPosition_Click(object sender, RoutedEventArgs e)
+        {
+            if (decimal.TryParse(tbPositionErtrag.Text, out decimal num) && int.TryParse(tbPositionID.Text, out int num2) && int.TryParse(tbID.Text, out int num3)&& decimal.TryParse(tbPositionAufwand.Text, out decimal num4))
+            {
+                Positionen p = new();
+                p.PositionID = num2;
+                p.ID = num3;
+                p.PErtrag = num;
+                p.PAufwand = num4;
+                p.Position = tbPositionText.Text.ToString();
+                SqlitePositionen.SavePosition(p);
+                LadenPositionsListe();
+            }
+            else
+                MessageBox.Show("Bitte geben Sie eine Zahl bei Aufwand, Ertrag und Positionsnummer ein");
+
+        }
+
+        private void btUpdatePosition_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbPositionen.SelectedItem != null)
+            {
+                if (decimal.TryParse(tbPositionErtrag.Text, out decimal num) && int.TryParse(tbPositionID.Text, out int num2) && int.TryParse(tbID.Text, out int num3) && decimal.TryParse(tbPositionAufwand.Text, out decimal num4))
+                {
+                    Positionen p = new();
+                    p.PositionID = num2;
+                    p.ID = num3;
+                    p.PErtrag = num;
+                    p.PAufwand = num4;
+                    p.Position = tbPositionText.Text.ToString();
+                    SqlitePositionen.UpdatePosition(p);
+                    LadenPositionsListe();
+                }
+                else
+                    MessageBox.Show("Bitte geben Sie eine Zahl bei Aufwand, Ertrag und Positionsnummer ein");
+            }
+            else
+            {
+                MessageBox.Show("Bitte Position aus Liste auswählen");
+            }
+        }
+
+        private void btDelPosition_Click(object sender, RoutedEventArgs e)
+        {
+            if (lbPositionen.SelectedItem != null)
+            {
+                SqlitePositionen.DelPosition((Positionen)lbPositionen.SelectedItem);
+                LadenPositionsListe();
+                tbPositionText.Clear();
+                tbPositionID.Clear();
+                tbPositionAufwand.Clear();
+                tbPositionErtrag.Clear();
+
+            }
+            else
+            {
+                MessageBox.Show("Bitte Position aus Liste auswählen");
+            }
+        }
+
+        private void lbPositionen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbPositionen.SelectedItem != null)
+            {
+                Positionen p = (Positionen)lbPositionen.SelectedItem;
+                tbPositionID.Text = p.PositionID.ToString();
+                tbPositionText.Text = p.Position.ToString();
+                tbPositionErtrag.Text = p.PErtrag.ToString();
+                tbPositionAufwand.Text=p.PAufwand.ToString();
+            }
+        }
 
 
-        //private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-
-        //}
+      
 
     }
         

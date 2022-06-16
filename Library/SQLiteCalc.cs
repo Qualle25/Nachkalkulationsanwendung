@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace Library
 {
-    public class SQLiteCalc
+    public class SqliteKalk
     {
         protected static string connectionString = "Data Source=DemoDB.db;Version=3;";
         public static List<KalkModel> LadenKalkListe(int kID)

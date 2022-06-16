@@ -32,14 +32,14 @@ namespace Nachkalkulationsanwendung
         public void LadenMitarbeiterDT()
         {
             int maID = 0;
-            DataTable dt = SqliteDataAccess.LadenMitarbeiterDT(maID);
+            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(maID);
             dgMA.ItemsSource = dt.DefaultView;
         }
   
         private void LadenKfzDT()
         {
             int kfzID = 0;
-            DataTable dtk = SqliteDataAccess.LadenKfzDT(kfzID);
+            DataTable dtk = SqliteMitarbeiterKFZ.LadenKfzDT(kfzID);
             dgKfz.ItemsSource = dtk.DefaultView;
         }
 
@@ -54,7 +54,7 @@ namespace Nachkalkulationsanwendung
             if (decimal.TryParse(Kfaktor.Text, out decimal num))
             {
                 m.Kostenfaktor = decimal.Parse(Kfaktor.Text);
-                SqliteDataAccess.SaveMitarbeiter(m);
+                SqliteMitarbeiterKFZ.SaveMitarbeiter(m);
                 LadenMitarbeiterDT();
                 
                 Vorname.Text = "";
@@ -75,7 +75,7 @@ namespace Nachkalkulationsanwendung
             if (decimal.TryParse(Faktor.Text, out decimal num))
             {
                 f.Faktor = decimal.Parse(Faktor.Text);
-                SqliteDataAccess.SaveKfz(f);
+                SqliteMitarbeiterKFZ.SaveKfz(f);
                 LadenKfzDT();
 
                 Kennzeichen.Text = "";
@@ -91,7 +91,7 @@ namespace Nachkalkulationsanwendung
 
             if (dataRowView != null)
             {
-                SqliteDataAccess.delMitarbeiter(Convert.ToInt32(dataRowView.Row["IDMA"]));
+                SqliteMitarbeiterKFZ.delMitarbeiter(Convert.ToInt32(dataRowView.Row["IDMA"]));
                 LadenMitarbeiterDT();
                 Vorname.Clear();
                 Nachname.Clear();
@@ -129,7 +129,7 @@ namespace Nachkalkulationsanwendung
                         Kostenfaktor = faktor
                     };
 
-                    SqliteDataAccess.updateMitarbeiter(m);
+                    SqliteMitarbeiterKFZ.updateMitarbeiter(m);
                     LadenMitarbeiterDT();
 
                     Vorname.Text = "";
@@ -157,7 +157,7 @@ namespace Nachkalkulationsanwendung
                         Kennzeichen = Kennzeichen.Text,
                         Faktor=faktor
                     };
-                    SqliteDataAccess.updateKfz(f);
+                    SqliteMitarbeiterKFZ.updateKfz(f);
                     LadenKfzDT();
                     Kennzeichen.Text = "";
                     Faktor.Text = "";
@@ -176,7 +176,7 @@ namespace Nachkalkulationsanwendung
 
             if (dataView != null)
             {
-                SqliteDataAccess.delKfz(Convert.ToInt32(dataView.Row["IDKfz"]));
+                SqliteMitarbeiterKFZ.delKfz(Convert.ToInt32(dataView.Row["IDKfz"]));
                 LadenKfzDT();
                 Vorname.Clear();
                 Nachname.Clear();

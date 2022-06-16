@@ -12,7 +12,7 @@ using Library;
 
 namespace Library
 {
-    public class SqliteDataAccess
+    public class SqliteMitarbeiterKFZ
     {
         
         protected static string connectionString = "Data Source=DemoDB.db;Version=3;";

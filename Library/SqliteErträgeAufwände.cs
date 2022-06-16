@@ -20,10 +20,6 @@ namespace Library
                 {
                     cnn.Open();
                     string sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Erträge WHERE ID= " + eID;
-                    if (eID == 0)
-                    {
-                        sql = "SELECT IDErtrag,Ertrag,Wert_Ertrag FROM Erträge";
-                    }
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
                     {
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -34,7 +30,7 @@ namespace Library
                                 {
                                     IDErtrag = int.Parse(reader["IDErtrag"].ToString()),
                                     Ertrag = reader["Ertrag"].ToString(),
-                                    Ertrag_Wert= decimal.Parse(reader["Wert_Ertrag"].ToString())
+                                    Ertrag_Wert = decimal.Parse(reader["Wert_Ertrag"].ToString())
                                 };
                                 listert.Add(e);
                             }
@@ -141,10 +137,6 @@ namespace Library
                 {
                     cnn.Open();
                     string sql = "SELECT IDAufwand,Aufwand,Wert_Aufwand FROM Aufwände WHERE ID= " + aID;
-                    if (aID == 0)
-                    {
-                        sql = "SELECT IDAufwand,Aufwand,Wert_Aufwand FROM Aufwände";
-                    }
                     using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
                     {
                         using (SQLiteDataReader reader = cmd.ExecuteReader())
@@ -153,9 +145,9 @@ namespace Library
                             {
                                 Aufwände a = new()
                                 {
-                                    IDAufwand = Int32.Parse(reader["IDAufwand"].ToString()),
+                                    IDAufwand = int.Parse(reader["IDAufwand"].ToString()),
                                     Aufwand = reader["Aufwand"].ToString(),
-                                    Wert_Aufwand = Int32.Parse(reader["Wert_Aufwand"].ToString()),
+                                    Wert_Aufwand = decimal.Parse(reader["Wert_Aufwand"].ToString()),
                                 };
                                 listauf.Add(a);
                             }
@@ -180,9 +172,10 @@ namespace Library
                 connection.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(connection))
                 {
-                    cmd.CommandText = "INSERT INTO Kalkulation(IDAufwand, Aufwand, Wert_Aufwand) VALUES (@IDAufwand, @Aufwand, @Wert_Aufwand)";                    
+                    cmd.CommandText = "INSERT INTO Aufwände(IDAufwand, ID, Aufwand, Wert_Aufwand) VALUES (@IDAufwand, @ID, @Aufwand, @Wert_Aufwand)";                    
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@IDAufwand", auf.IDAufwand);
+                    cmd.Parameters.AddWithValue("@ID", auf.ID);
                     cmd.Parameters.AddWithValue("@Aufwand", auf.Aufwand);
                     cmd.Parameters.AddWithValue("@Wert_Aufwand", auf.Wert_Aufwand);
                     try
@@ -208,7 +201,7 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "DELETE FROM Kalkulation WHERE IDAufwand = @IDAufwand";
+                    cmd.CommandText = "DELETE FROM Aufwände WHERE IDAufwand = @IDAufwand";
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@IDAufwand", auf.IDAufwand);
                     try
@@ -233,11 +226,11 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "UPDATE Kalkulation SET Aufwand=@Aufwand, Wert_Aufwand=@Wert_Aufwand WHERE IDAufwand = @IDAufwand";
+                    cmd.CommandText = "UPDATE Aufwände SET Aufwand=@Aufwand, Wert_Aufwand=@Wert_Aufwand WHERE IDAufwand = @IDAufwand";
                     cmd.Prepare();
                     cmd.Parameters.AddWithValue("@IDAufwand", auf.IDAufwand);
                     cmd.Parameters.AddWithValue("@Aufwand", auf.Aufwand);
-                    cmd.Parameters.AddWithValue("Wert_Aufwand", auf.Wert_Aufwand);
+                    cmd.Parameters.AddWithValue("@Wert_Aufwand", auf.Wert_Aufwand);
                     try
                     {
                         result = cmd.ExecuteNonQuery();
