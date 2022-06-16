@@ -32,7 +32,7 @@ namespace Nachkalkulationsanwendung
         public void LadenKalkulationsListe()
         {
             int kID = 0;
-            Kalk = SQLiteCalc.LadenKalkListe(kID);
+            Kalk = SqliteKalk.LadenKalkListe(kID);
             lbKalk.Items.Clear();
             foreach (KalkModel model in Kalk)
             {
@@ -50,7 +50,7 @@ namespace Nachkalkulationsanwendung
         {
             if (lbKalk.SelectedItem != null)
             {
-                SQLiteCalc.delKalk((KalkModel)lbKalk.SelectedItem);
+                SqliteKalk.delKalk((KalkModel)lbKalk.SelectedItem);
                 LadenKalkulationsListe();
             }
             else

@@ -12,6 +12,7 @@ namespace Library
         public int IDErtrag { get; set; }
         public string Ertrag { get; set; }
         public decimal Ertrag_Wert { get; set; }
+        public decimal SummeErträge { get; set; }
         public override string ToString()
         {
             return $"{IDErtrag}      {Ertrag}      {Ertrag_Wert}";
