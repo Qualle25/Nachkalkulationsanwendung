@@ -27,13 +27,18 @@ namespace Nachkalkulationsanwendung
         List <Erträge> listert=new ();
         List<Aufwände> listauf = new();
         List<Positionen> listpos = new();
-        
-        public edit_Kalkulation(string ID)
+        public int AuftragsID { get { return int.TryParse(tbID.Text,out int ID)?ID:0; }} 
+        public enum WindowModus
         {
-            
+            Hinzufügen,Aktualisieren
+        }
+        public WindowModus Modus { get; set; }
+        public edit_Kalkulation(string ID,WindowModus modus)
+        {
+            Modus= modus;
             InitializeComponent();
             tbID.Text = ID;
-            LadenMADTAusschreibung();
+            ErstellenMADTAusschreibungAnfordern();
             LadenKFZDTAusschreibung();
             LadenMADTNachforderung();
             LadenKFZDTNachforderung();
@@ -49,33 +54,59 @@ namespace Nachkalkulationsanwendung
             LadenKFZBuchhaltung();
             LadenErtragsListe();
             LadenAufwandsListe();
+            if (Modus==WindowModus.Aktualisieren)
+            {
+                saveKalk.Content = "Kalkulation aktualisieren";
+            }
         }
         
 
         private void saveKalk_Click(object sender, RoutedEventArgs e)
         {
+            if (Modus==WindowModus.Hinzufügen)
+            {
+                Kalkulation model = new();
+                {
+                    model.Kunde = tbKunde.Text;
+                }
+                if (int.TryParse(tbID.Text, out int num))
+                {
+                    model.ID = int.Parse(tbID.Text);
+                    SqliteKalkulation.SaveKalk(model);
+                    OnCalculationSave?.Invoke();
+                    SaveMAAufwandAuschreibungAnfordern(AuftragsID);
 
-            KalkModel model = new();
-            {
-                model.Kunde = tbKunde.Text;
-            }
-            if (int.TryParse(tbID.Text, out int num))
-            {
-                model.ID = int.Parse(tbID.Text);
-                SqliteKalk.SaveKalk(model);
-                OnCalculationSave?.Invoke();
-                
-             
+                }
+                else
+                    MessageBox.Show("Bitte geben Sie eine Zahl bei Auftragsnummer ein");
             }
             else
-                MessageBox.Show("Bitte geben Sie eine Zahl bei Auftragsnummer ein");
+            {
+
+            }
+            
         }
         
-        public void LadenMADTAusschreibung()
+        public void ErstellenMADTAusschreibungAnfordern()
         {
+            DataTable dt = SqliteStammdatenMAKFZ.LadenMitarbeiterDT(0);
+            
+            DataColumn colHours = dt.Columns.Add("Stunden", typeof(decimal));
+            colHours.SetOrdinal(0); // position as first column
 
-            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
+            List<string> inputColumns = new List<string>() { "Stunden", "..." }; // extenable
+
+            foreach (DataColumn col in dt.Columns)
+            {
+                if(!inputColumns.Contains(col.ColumnName))
+                    col.ReadOnly = true;
+            }
+            foreach (DataRow row in dt.Rows)
+                row["Stunden"] = 0.00; // set default value
             dgMAAusAnfordern.ItemsSource = dt.DefaultView;
+
+
+
             dgMAAusSichten.ItemsSource=dt.DefaultView;
             dgMAAusBearbeiten.ItemsSource=dt.DefaultView;
             dgMAAusVorOrt.ItemsSource = dt.DefaultView;
@@ -83,9 +114,21 @@ namespace Nachkalkulationsanwendung
             dgMAAusPrüfung.ItemsSource = dt.DefaultView;
             dgMAAusAbgabe.ItemsSource = dt.DefaultView;
         }
+        //public void SaveMAAusschreibungAnforder()
+        //{
+            
+        //        foreach (DataRow row1 in dt.Rows)
+        //        {
+        //            if (colHours.DefaultValue != )
+        //            {
+
+        //            }
+        //        }
+            
+        //}
         public void LadenKFZDTAusschreibung()
         {
-            DataTable dt = SqliteMitarbeiterKFZ.LadenKfzDT(0);
+            DataTable dt = SqliteStammdatenMAKFZ.LadenKfzDT(0);
             dgKfzAusAnfordern.ItemsSource = dt.DefaultView;
             dgKfzAusSichten.ItemsSource = dt.DefaultView;
             dgKfzAusBearbeiten.ItemsSource = dt.DefaultView;
@@ -96,7 +139,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTNachforderung()
         {
-            DataTable dt=SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
+            DataTable dt=SqliteStammdatenMAKFZ.LadenMitarbeiterDT(0);
             dgMANachfAbklären.ItemsSource = dt.DefaultView;
             dgMANachfBearbeiten.ItemsSource= dt.DefaultView;
             dgMANachfNachfragen.ItemsSource= dt.DefaultView;
@@ -104,7 +147,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTNachforderung()
         {
-            DataTable dt=SqliteMitarbeiterKFZ.LadenKfzDT(0);
+            DataTable dt=SqliteStammdatenMAKFZ.LadenKfzDT(0);
             dgKfzNachfAbklären.ItemsSource= dt.DefaultView;
             dgKfzNachfBearbeiten.ItemsSource = dt.DefaultView;
             dgKfzNachfNachfragen.ItemsSource = dt.DefaultView;
@@ -112,7 +155,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTNachtragsangebot()
         {
-            DataTable dt=SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0); 
+            DataTable dt=SqliteStammdatenMAKFZ.LadenMitarbeiterDT(0); 
             dgMANachtrAbklären.ItemsSource=dt.DefaultView;
             dgMANachtrErstellen.ItemsSource= dt.DefaultView;
             dgMANachtrPrüfen.ItemsSource= dt.DefaultView;
@@ -120,7 +163,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTNachtragsangebot()
         {
-            DataTable dt = SqliteMitarbeiterKFZ.LadenKfzDT(0);
+            DataTable dt = SqliteStammdatenMAKFZ.LadenKfzDT(0);
             dgKfzNachtrAbklären.ItemsSource = dt.DefaultView;
             dgKfzNachtrErstellen.ItemsSource = dt.DefaultView;
             dgKfzNachtrPrüfem.ItemsSource= dt.DefaultView;
@@ -128,7 +171,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTAuftrag()
         {
-            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0); 
+            DataTable dt = SqliteStammdatenMAKFZ.LadenMitarbeiterDT(0); 
             dgMAAuftrErstellen.ItemsSource= dt.DefaultView;
             dgMAAuftrVorOrt.ItemsSource= dt.DefaultView;
             dgMAAuftrÄnderung.ItemsSource= dt.DefaultView;
@@ -138,7 +181,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTAuftrag()
         {
-            DataTable dt=SqliteMitarbeiterKFZ.LadenKfzDT(0);
+            DataTable dt=SqliteStammdatenMAKFZ.LadenKfzDT(0);
             dgKfzAuftrErstellen.ItemsSource = dt.DefaultView;
             dgKfzAuftrVorOrt.ItemsSource= dt.DefaultView;
             dgKfzAuftrÄnderung.ItemsSource= dt.DefaultView;
@@ -148,7 +191,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTLager()
         {
-            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
+            DataTable dt = SqliteStammdatenMAKFZ.LadenMitarbeiterDT(0);
             dgMALaWarenannahme.ItemsSource= dt.DefaultView;
             dgMALaWareneinlagerung.ItemsSource= dt.DefaultView;
             dgMALaKommissionieren.ItemsSource= dt.DefaultView;
@@ -158,7 +201,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTLager()
         {
-            DataTable dt = SqliteMitarbeiterKFZ.LadenKfzDT(0);
+            DataTable dt = SqliteStammdatenMAKFZ.LadenKfzDT(0);
             dgKfzLaWarenannahme.ItemsSource = dt.DefaultView;
             dgKfzLaWareneinlagerung.ItemsSource = dt.DefaultView;
             dgKfzLaKommissionieren.ItemsSource = dt.DefaultView;
@@ -168,7 +211,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTTechnik()
         {
-            DataTable dt=SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
+            DataTable dt=SqliteStammdatenMAKFZ.LadenMitarbeiterDT(0);
             dgMATeRücksprache.ItemsSource = dt.DefaultView;
             dgMATeAuspacken.ItemsSource = dt.DefaultView;
             dgMATeDLintern.ItemsSource = dt.DefaultView;
@@ -178,7 +221,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZDTTechnik()
         {
-            DataTable dt=SqliteMitarbeiterKFZ.LadenKfzDT(0);
+            DataTable dt=SqliteStammdatenMAKFZ.LadenKfzDT(0);
             dgKfzTeRücksprache.ItemsSource= dt.DefaultView;
             dgKfzTeAuspacken.ItemsSource= dt.DefaultView;
             dgKfzTeDLintern.ItemsSource= dt.DefaultView;
@@ -188,7 +231,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenMADTBuchhaltung()
         {
-            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(0);
+            DataTable dt = SqliteStammdatenMAKFZ.LadenMitarbeiterDT(0);
             dgMABuEinpflegen.ItemsSource= dt.DefaultView;
             dgMABuPrüfung.ItemsSource= dt.DefaultView;
             dgMABuArchivierung.ItemsSource=dt.DefaultView;
@@ -196,7 +239,7 @@ namespace Nachkalkulationsanwendung
         }
         public void LadenKFZBuchhaltung()
         {
-            DataTable dt=SqliteMitarbeiterKFZ.LadenKfzDT(0);
+            DataTable dt=SqliteStammdatenMAKFZ.LadenKfzDT(0);
             dgKfzBuEinpflegen.ItemsSource = dt.DefaultView;
             dgKfzBuPrüfung.ItemsSource = dt.DefaultView;
             dgKfzBuArchivierung.ItemsSource = dt.DefaultView;
@@ -469,10 +512,28 @@ namespace Nachkalkulationsanwendung
                 tbPositionAufwand.Text=p.PAufwand.ToString();
             }
         }
+        public void SaveMAAufwandAuschreibungAnfordern(int auftragsID)
+        {
+            foreach (DataRowView row in dgMAAusAnfordern.ItemsSource)
+            {
+                
+                decimal stunden = decimal.Parse(row.Row["Stunden"].ToString());
+                if (stunden > 0)
+                {
+                    int Id = int.Parse(row.Row["IDMA"].ToString());
+                    Mitarbeiter ma = SqliteStammdatenMAKFZ.GetMitarbeiterByID(Id);
+                    ma.Arbeitszeit = decimal.Parse(row.Row["Stunden"].ToString());
+                    SqliteMAKFZ.SaveMitarbeiterArbeitszeit(ma, auftragsID);
+                }
+                    
 
+                return;
+            }
+        }
+        public void LadenMAAufwandAusschreibungAnfordern()
+        {
 
-      
-
-    }
+        }
         
+    }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nachkalkulationsanwendung"
         mc:Ignorable="d"
-        Title="winKalkulation" Height="450" Width="800">
+        Title="winKalkulation" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <ListBox x:Name="lbKalk" HorizontalAlignment="Left" Height="350" Margin="45,48,0,0" VerticalAlignment="Top" Width="300" d:ItemsSource="{d:SampleData ItemCount=5}" MouseDoubleClick="lbKalk_MouseDoubleClick"/>
         <Button  x:Name="btn_newCalc" Content="neue Kalkulation" HorizontalAlignment="Left" Height="45" Margin="428,63,0,0" VerticalAlignment="Top" Width="150" Click="btn_newCalc_Click"/>

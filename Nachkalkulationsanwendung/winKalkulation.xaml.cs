@@ -22,7 +22,7 @@ namespace Nachkalkulationsanwendung
     {
 
         
-        List<KalkModel> Kalk = new();
+        List<Kalkulation> Kalk = new();
         public winKalkulation()
         {
             InitializeComponent();
@@ -32,16 +32,16 @@ namespace Nachkalkulationsanwendung
         public void LadenKalkulationsListe()
         {
             int kID = 0;
-            Kalk = SqliteKalk.LadenKalkListe(kID);
+            Kalk = SqliteKalkulation.LadenKalkListe(kID);
             lbKalk.Items.Clear();
-            foreach (KalkModel model in Kalk)
+            foreach (Kalkulation model in Kalk)
             {
                 lbKalk.Items.Add(model);
             }
         }
         private void btn_newCalc_Click(object sender, RoutedEventArgs e)
         {
-            edit_Kalkulation win4 = new(string.Empty);
+            edit_Kalkulation win4 = new(string.Empty, edit_Kalkulation.WindowModus.Hinzufügen);
             win4.Owner = this;
             win4.Show();
         }
@@ -50,7 +50,7 @@ namespace Nachkalkulationsanwendung
         {
             if (lbKalk.SelectedItem != null)
             {
-                SqliteKalk.delKalk((KalkModel)lbKalk.SelectedItem);
+                SqliteKalkulation.delKalk((Kalkulation)lbKalk.SelectedItem);
                 LadenKalkulationsListe();
             }
             else
@@ -63,8 +63,8 @@ namespace Nachkalkulationsanwendung
         {
             if (lbKalk.SelectedItem!=null)
             {
-                KalkModel model = (KalkModel)lbKalk.SelectedItem; 
-                edit_Kalkulation win4 = new(model.ID.ToString());
+                Kalkulation model = (Kalkulation)lbKalk.SelectedItem; 
+                edit_Kalkulation win4 = new(model.ID.ToString(),edit_Kalkulation.WindowModus.Aktualisieren);
                 win4.Show();
                 win4.tbKunde.Text= model.Kunde.ToString();
                 win4.tbID.Text= model.ID.ToString();

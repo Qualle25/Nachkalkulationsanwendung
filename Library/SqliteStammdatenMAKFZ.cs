@@ -12,11 +12,51 @@ using Library;
 
 namespace Library
 {
-    public class SqliteMitarbeiterKFZ
+    public class SqliteStammdatenMAKFZ
     {
         
         protected static string connectionString = "Data Source=DemoDB.db;Version=3;";
         
+        public static Mitarbeiter GetMitarbeiterByID(int id)
+        {
+            Mitarbeiter model = null;
+
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
+                {
+                    cnn.Open();
+
+                    string sql = "SELECT IDMA,Vorname,Nachname,Kostenfaktor FROM Mitarbeiter WHERE IDMA = " + id;
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            if(reader.HasRows && reader.Read())
+                            {
+                                model = new Mitarbeiter()
+                                {
+                                    Id = reader.GetInt32(0),
+                                    Vorname = reader.GetString(1),
+                                    Nachname = reader.GetString(2),
+                                    Kostenfaktor = reader.GetDecimal(3),
+                                };
+                            }
+                        }
+                    }
+
+                    cnn.Close();
+                }
+            }
+            catch (SQLiteException e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return model;
+        }
+
         public static DataTable LadenMitarbeiterDT(int maID)
         {
             DataTable dt = new DataTable();
@@ -27,7 +67,7 @@ namespace Library
                 {
                     cnn.Open();
 
-                    string sql = "SELECT IDMA,Vorname,Nachname,Kostenfaktor FROM Mitarbeiter WHERE Id = " + maID;
+                    string sql = "SELECT IDMA,Vorname,Nachname,Kostenfaktor FROM Mitarbeiter WHERE IDMA = " + maID;
 
                     if (maID == 0)
                     {
@@ -50,7 +90,7 @@ namespace Library
             return dt;
         }
 
-        public static int SaveMitarbeiter(MitarbeiterModel mitarbeiter)
+        public static int SaveMitarbeiter(Mitarbeiter mitarbeiter)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -81,7 +121,7 @@ namespace Library
         }
         
 
-        public static int updateMitarbeiter(MitarbeiterModel mitarbeiter)
+        public static int updateMitarbeiter(Mitarbeiter mitarbeiter)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -171,7 +211,7 @@ namespace Library
             }
             return dtk;
         }
-        public static int SaveKfz(KfzModel kfz)
+        public static int SaveKfz(Kfz kfz)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -224,7 +264,7 @@ namespace Library
             }
             return result;
         }
-        public static int updateKfz(KfzModel kfz)
+        public static int updateKfz(Kfz kfz)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {

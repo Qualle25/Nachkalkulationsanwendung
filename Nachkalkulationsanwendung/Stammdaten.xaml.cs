@@ -32,20 +32,20 @@ namespace Nachkalkulationsanwendung
         public void LadenMitarbeiterDT()
         {
             int maID = 0;
-            DataTable dt = SqliteMitarbeiterKFZ.LadenMitarbeiterDT(maID);
+            DataTable dt = SqliteStammdatenMAKFZ.LadenMitarbeiterDT(maID);
             dgMA.ItemsSource = dt.DefaultView;
         }
   
         private void LadenKfzDT()
         {
             int kfzID = 0;
-            DataTable dtk = SqliteMitarbeiterKFZ.LadenKfzDT(kfzID);
+            DataTable dtk = SqliteStammdatenMAKFZ.LadenKfzDT(kfzID);
             dgKfz.ItemsSource = dtk.DefaultView;
         }
 
         private void AddMitarbeiter_Click(object sender, RoutedEventArgs e)
         {
-            MitarbeiterModel m = new()
+            Mitarbeiter m = new()
             {
                 Vorname = Vorname.Text,
                 Nachname = Nachname.Text
@@ -54,7 +54,7 @@ namespace Nachkalkulationsanwendung
             if (decimal.TryParse(Kfaktor.Text, out decimal num))
             {
                 m.Kostenfaktor = decimal.Parse(Kfaktor.Text);
-                SqliteMitarbeiterKFZ.SaveMitarbeiter(m);
+                SqliteStammdatenMAKFZ.SaveMitarbeiter(m);
                 LadenMitarbeiterDT();
                 
                 Vorname.Text = "";
@@ -67,7 +67,7 @@ namespace Nachkalkulationsanwendung
 
         private void AddKfz_Click(object sender, RoutedEventArgs e)
         {
-            KfzModel f = new()
+            Kfz f = new()
             {
                 Kennzeichen = Kennzeichen.Text
             };
@@ -75,7 +75,7 @@ namespace Nachkalkulationsanwendung
             if (decimal.TryParse(Faktor.Text, out decimal num))
             {
                 f.Faktor = decimal.Parse(Faktor.Text);
-                SqliteMitarbeiterKFZ.SaveKfz(f);
+                SqliteStammdatenMAKFZ.SaveKfz(f);
                 LadenKfzDT();
 
                 Kennzeichen.Text = "";
@@ -91,7 +91,7 @@ namespace Nachkalkulationsanwendung
 
             if (dataRowView != null)
             {
-                SqliteMitarbeiterKFZ.delMitarbeiter(Convert.ToInt32(dataRowView.Row["IDMA"]));
+                SqliteStammdatenMAKFZ.delMitarbeiter(Convert.ToInt32(dataRowView.Row["IDMA"]));
                 LadenMitarbeiterDT();
                 Vorname.Clear();
                 Nachname.Clear();
@@ -121,7 +121,7 @@ namespace Nachkalkulationsanwendung
             {
                 if (decimal.TryParse(Kfaktor.Text, out decimal faktor))
                 {
-                    MitarbeiterModel m = new()
+                    Mitarbeiter m = new()
                     {
                         Id = Convert.ToInt32(dataRowView.Row["IDMA"]),
                         Vorname = Vorname.Text,
@@ -129,7 +129,7 @@ namespace Nachkalkulationsanwendung
                         Kostenfaktor = faktor
                     };
 
-                    SqliteMitarbeiterKFZ.updateMitarbeiter(m);
+                    SqliteStammdatenMAKFZ.updateMitarbeiter(m);
                     LadenMitarbeiterDT();
 
                     Vorname.Text = "";
@@ -151,13 +151,13 @@ namespace Nachkalkulationsanwendung
             {
                 if (decimal.TryParse(Faktor.Text, out decimal faktor))
                 {
-                    KfzModel f = new()
+                    Kfz f = new()
                     {
                         ID = Convert.ToInt32(dataView.Row["IDKfz"]),
                         Kennzeichen = Kennzeichen.Text,
                         Faktor=faktor
                     };
-                    SqliteMitarbeiterKFZ.updateKfz(f);
+                    SqliteStammdatenMAKFZ.updateKfz(f);
                     LadenKfzDT();
                     Kennzeichen.Text = "";
                     Faktor.Text = "";
@@ -176,7 +176,7 @@ namespace Nachkalkulationsanwendung
 
             if (dataView != null)
             {
-                SqliteMitarbeiterKFZ.delKfz(Convert.ToInt32(dataView.Row["IDKfz"]));
+                SqliteStammdatenMAKFZ.delKfz(Convert.ToInt32(dataView.Row["IDKfz"]));
                 LadenKfzDT();
                 Vorname.Clear();
                 Nachname.Clear();

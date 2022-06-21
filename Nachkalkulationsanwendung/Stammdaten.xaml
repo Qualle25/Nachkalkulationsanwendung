@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nachkalkulationsanwendung"
         mc:Ignorable="d"
-        Title="Stammdaten" Height="450" Width="1000">
+        Title="Stammdaten" Height="450" Width="1000" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250*"/>

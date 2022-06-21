@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nachkalkulationsanwendung"
         mc:Ignorable="d"
-        Title="Kalkulation" Height="715" Width="1310">
+        Title="Kalkulation" Height="715" Width="1310" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid Margin="0,0,0,24">
 
         <Button x:Name="saveKalk" Content="Kalkulation speichern" HorizontalAlignment="Left" Height="40" Margin="730,22,0,0" VerticalAlignment="Top" Width="136" Click="saveKalk_Click"/>
@@ -27,8 +27,12 @@
             </TabItem>
             <TabItem Header="Ausschreibung">
                 <TabControl Height="603"  >
-                    <TabItem Header="Anfordern">
+                    <TabItem Header="Anfordern" Uid="1">
                         <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="89*"/>
+                                <ColumnDefinition Width="1199*"/>
+                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
@@ -40,17 +44,9 @@
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
@@ -61,7 +57,7 @@
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
                                     <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
@@ -82,6 +78,10 @@
 
                     <TabItem Header="Sichten">
                         <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="7*"/>
+                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
@@ -93,17 +93,9 @@
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
-
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
+                                    
                                 </DataGrid.Columns>
                             </DataGrid>
 
@@ -114,7 +106,7 @@
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
                                     <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
@@ -243,6 +235,10 @@
                     </TabItem>
                     <TabItem Header="Rücksprache">
                         <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="51*"/>
+                                <ColumnDefinition Width="593*"/>
+                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
@@ -254,7 +250,7 @@
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
                                     <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
@@ -275,7 +271,7 @@
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
                                     <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 

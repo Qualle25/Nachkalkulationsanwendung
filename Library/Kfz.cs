@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    public class KfzModel
+    public class Kfz
     {
         public int ID { get; set; }
         public string Kennzeichen { get; set; }

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nachkalkulationsanwendung"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Nachkalkualtion" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Background="AntiqueWhite">
     <Grid>
-        <Button Content="Stammdaten" HorizontalAlignment="Left" Height="70" Margin="450,280,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click"/>
-        <Button x:Name="btn_calc" Content="Kalkulation" HorizontalAlignment="Left" Height="70" Margin="150,280,0,0" VerticalAlignment="Top" Width="200" Click="btn_calc_Click"/>
+        <Button Content="Stammdaten" HorizontalAlignment="Left" Height="70" Margin="450,280,0,0" VerticalAlignment="Top" Width="200" Click="Button_Click" FontFamily="Arial" FontSize="20"/>
+        <Button x:Name="btn_calc" Content="Kalkulation" HorizontalAlignment="Left" Height="70" Margin="150,280,0,0" VerticalAlignment="Top" Width="200" Click="btn_calc_Click" FontFamily="Arial" FontSize="18"/>
 
     </Grid>
 </Window>

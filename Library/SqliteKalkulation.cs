@@ -8,12 +8,12 @@ using System.Windows;
 
 namespace Library
 {
-    public class SqliteKalk
+    public class SqliteKalkulation
     {
         protected static string connectionString = "Data Source=DemoDB.db;Version=3;";
-        public static List<KalkModel> LadenKalkListe(int kID)
+        public static List<Kalkulation> LadenKalkListe(int kID)
         {
-            List<KalkModel> listk = new();
+            List<Kalkulation> listk = new();
             try
             {
                 using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
@@ -30,7 +30,7 @@ namespace Library
                         {
                             while (reader.Read())
                             {
-                                KalkModel k = new()
+                                Kalkulation k = new()
                                 {
                                     ID = Int32.Parse(reader["ID"].ToString()),
                                     Kunde = reader["Kunde"].ToString()
@@ -49,7 +49,7 @@ namespace Library
             return listk;
 
         }
-        public static int SaveKalk(KalkModel k)
+        public static int SaveKalk(Kalkulation k)
         {
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
@@ -77,7 +77,7 @@ namespace Library
                 return result;
             }
         }
-        public static int delKalk(KalkModel kalk)
+        public static int delKalk(Kalkulation kalk)
         {
             int result = -1;
             using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
