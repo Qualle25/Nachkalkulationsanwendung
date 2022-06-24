@@ -177,7 +177,44 @@ namespace Library
             return result;
         }
 
+        public static Kfz GetKfzByID(int id)
+        {
+            Kfz model = null;
 
+            try
+            {
+                using (SQLiteConnection cnn = new SQLiteConnection(connectionString))
+                {
+                    cnn.Open();
+
+                    string sql = "SELECT IDKfz, Kennzeichen, Faktor FROM Kfz WHERE IDKfz = " + id;
+
+                    using (SQLiteCommand cmd = new SQLiteCommand(sql, cnn))
+                    {
+                        using (SQLiteDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows && reader.Read())
+                            {
+                                model = new Kfz()
+                                {
+                                    ID = reader.GetInt32(0),
+                                    Kennzeichen = reader.GetString(1),
+                                    Faktor = reader.GetDecimal(2),
+                                };
+                            }
+                        }
+                    }
+
+                    cnn.Close();
+                }
+            }
+            catch (SQLiteException e)
+            {
+                MessageBox.Show(e.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            return model;
+        }
 
         public static DataTable LadenKfzDT(int kfzID)
         {

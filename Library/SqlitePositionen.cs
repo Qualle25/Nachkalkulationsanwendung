@@ -112,8 +112,14 @@ namespace Library
                 cnn.Open();
                 using (SQLiteCommand cmd = new SQLiteCommand(cnn))
                 {
-                    cmd.CommandText = "UPDATE Positionen SET Position=@Position, PErtrag=PErtrag, PAufwand=@PAufwand WHERE PositionID = @PositionID";
+                    cmd.CommandText = @"UPDATE Positionen 
+                                        SET Position = @Position, 
+                                            PErtrag = @PErtrag, 
+                                            PAufwand = @PAufwand 
+                                        WHERE PositionID = @PositionID
+                                            AND ID = @AuftragsID";
                     cmd.Prepare();
+                    cmd.Parameters.AddWithValue("@AuftragsID", p.ID);
                     cmd.Parameters.AddWithValue("@PositionID", p.PositionID);
                     cmd.Parameters.AddWithValue("@Position", p.Position);
                     cmd.Parameters.AddWithValue("@PErtrag", p.PErtrag);

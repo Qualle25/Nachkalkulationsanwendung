@@ -20,8 +20,6 @@ namespace Nachkalkulationsanwendung
     /// </summary>
     public partial class winKalkulation : Window
     {
-
-        
         List<Kalkulation> Kalk = new();
         public winKalkulation()
         {
@@ -42,6 +40,7 @@ namespace Nachkalkulationsanwendung
         private void btn_newCalc_Click(object sender, RoutedEventArgs e)
         {
             edit_Kalkulation win4 = new(string.Empty, edit_Kalkulation.WindowModus.Hinzufügen);
+            win4.OnCalculationSave += LadenKalkulationsListe;
             win4.Owner = this;
             win4.Show();
         }
@@ -65,10 +64,11 @@ namespace Nachkalkulationsanwendung
             {
                 Kalkulation model = (Kalkulation)lbKalk.SelectedItem; 
                 edit_Kalkulation win4 = new(model.ID.ToString(),edit_Kalkulation.WindowModus.Aktualisieren);
-                win4.Show();
                 win4.tbKunde.Text= model.Kunde.ToString();
                 win4.tbID.Text= model.ID.ToString();
-
+                win4.tbID.IsReadOnly = true;
+                win4.OnCalculationSave += LadenKalkulationsListe;
+                win4.Show();
             }
         }
     }

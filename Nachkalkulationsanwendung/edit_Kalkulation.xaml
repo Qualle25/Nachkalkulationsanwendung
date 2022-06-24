@@ -27,7 +27,7 @@
             </TabItem>
             <TabItem Header="Ausschreibung">
                 <TabControl Height="603"  >
-                    <TabItem Header="Anfordern" Uid="1">
+                    <TabItem Header="Anfordern" >
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="89*"/>
@@ -40,6 +40,7 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAusAnfordern"
+                                Uid="MAAnfordernAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
@@ -53,23 +54,14 @@
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAusAnfordern"
+                                Uid="KfzAnfordernAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -89,36 +81,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAusSichten"
+                                Uid="MASichtenAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
-                                    
+
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAusSichten"
+                                Uid="KfzSichtenAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -132,44 +116,27 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAusBearbeiten"
+                                Uid="MABearbeitenAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
-
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAusBearbeiten"
+                                Uid="KfzBearbeitenAuschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -185,44 +152,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAusVorOrt"
+                                Uid="MAVorOrtAuschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="2,-39,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAusVorOrt"
+                                Uid="KfzVorOrtAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,12,0,0">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,30,0,0" >
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                             <TextBox HorizontalAlignment="Left" Width="200" Grid.Row="1" x:Name="tbAusVorOrtÜbernAnz" Margin="202,224,0,3" Grid.RowSpan="2"/>
@@ -246,44 +197,27 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAusRücksprache"
+                                Uid="MARückspracheAuschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
-
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAusRücksprache"
+                                Uid="KfzRückspracheAuschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="2">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -297,44 +231,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAusPrüfung"
+                                Uid="MAPrüfungAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAusPrüfung"
+                                Uid="KfzPrüfungAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -348,42 +266,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAusAbgabe"
+                                Uid="MAAbgabeAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAusAbgabe"
+                                Uid="KfzAbgabeAusschreibung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -403,44 +307,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMANachfAbklären"
+                                Uid="MAAbklärenNachforderung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzNachfAbklären"
+                                Uid="KfzAbklärenNachforderung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -454,44 +342,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMANachfBearbeiten"
+                                Uid="MABearbeitenNachforderung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzNachfBearbeiten"
+                                Uid="KfzBearbeitenNachforderung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -505,44 +377,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMANachfNachfragen"
+                                Uid="MANachfragenNachforderung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzNachfNachfragen"
+                                Uid="KfzNachfragenNachforderung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -556,44 +412,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMANachfVersenden"
+                                Uid="MAVersendenNachforderung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzNachfVersenden"
+                                Uid="KfzVersendenNachforderung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -611,44 +451,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMANachtrAbklären"
+                                Uid="MAAbklärenNachtragsangebot"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzNachtrAbklären"
+                                Uid="KfzAbklärenNachtragsangebot"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -662,44 +486,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMANachtrErstellen"
+                                Uid="MAErstellenNachtragsangebot"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzNachtrErstellen"
+                                Uid="KfzErstellenNachtragsangebot"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -713,44 +521,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMANachtrPrüfen"
+                                Uid="MAPrüfenNachtragsangebot"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzNachtrPrüfem"
+                                Uid="KfzPrüfenNachtragsangebot"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -764,44 +556,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMANachtrVersenden"
+                                Uid="MAVersendenNachtragsangebot"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzNachtrVersenden"
+                                Uid="KfzVersendenNachtragsangebot"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -824,44 +600,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAuftrErstellen"
+                                Uid="MAErstellenAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="0,-3,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAuftrErstellen"
+                                Uid="KfzErstellenAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -877,44 +637,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAuftrVorOrt"
+                                Uid="MAVorOrtAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,-35,0,0">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,-38,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAuftrVorOrt"
+                                Uid="KfzVorOrtAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Margin="0,30,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                             <TextBox HorizontalAlignment="Left" Width="200" Grid.Row="1" x:Name="tbAufVorOrtÜbernAnz" Margin="202,224,0,3" Grid.RowSpan="2"/>
@@ -939,44 +683,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAuftrÄnderung"
+                                Uid="MAÄnderungAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="0,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAuftrÄnderung"
+                                Uid="KfzÄnderungAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -995,44 +723,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAuftrPreisfindung"
+                                Uid="MAPreisfindungAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="0,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAuftrPreisfindung"
+                                Uid="KfzPreisfindungAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -1051,44 +763,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAuftrBestellen"
+                                Uid="MABestellenAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="0,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAuftrBestellen"
+                                Uid="KfzBestellenAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -1107,44 +803,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMAAuftrRücksprache"
+                                Uid="MARückspracheAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="0,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzAuftrRücksprache"
+                                Uid="KfzRückspracheAuftrag"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -1169,44 +849,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMALaWarenannahme"
+                                Uid="MAWarenannahmeLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzLaWarenannahme"
+                                Uid="KfzWarenannahmeLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -1225,44 +889,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMALaWareneinlagerung"
+                                Uid="MAWareneinlagerungLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-2,-18,0,0">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzLaWareneinlagerung"
+                                Uid="KfzWareneinlagerungLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -1281,44 +929,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMALaKommissionieren"
+                                Uid="MAKommissionierenLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzLaKommissionieren"
+                                Uid="KfzKommissionierenLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -1337,44 +969,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMALaWarenbereitstellung"
+                                Uid="MAWarenbereitstellungLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzLaWarenbereitstellung"
+                                Uid="KfzWarenbereitstellungLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -1393,44 +1009,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMALaZwischenlagerung"
+                                Uid="MAZwischenlagerungLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzLaZwischenlagerung"
+                                Uid="KfzZwischenlagerungLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -1450,44 +1050,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMALaVersand"
+                                Uid="MAVersandLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-4,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzLaVersand"
+                                Uid="KfzVersandLager"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -1514,42 +1098,28 @@
                                 <DataGrid 
                                     Grid.Row="0"
                                     x:Name="dgMATeRücksprache"
+                                    Uid="MARückspracheTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
-                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4">
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Margin="-1,-1,0,0">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Stunden">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbStundenMA" Width="100"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
                                 <DataGrid 
                                     Grid.Row="1"
                                     x:Name="dgKfzTeRücksprache"
+                                    Uid="KfzRückspracheTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbKMKfz"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -1568,42 +1138,28 @@
                                 <DataGrid 
                                     Grid.Row="0"
                                     x:Name="dgMATeAuspacken"
+                                    Uid="AuspackenTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
-                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="0,-18,0,0">
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-1,-18,0,0">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Stunden">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbStundenMA" Width="100"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
                                 <DataGrid 
                                     Grid.Row="1"
                                     x:Name="dgKfzTeAuspacken"
+                                    Uid="KfzAuspackenTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbKMKfz"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -1624,41 +1180,27 @@
                                 <DataGrid 
                                     Grid.Row="0"
                                     x:Name="dgMATePositionen"
+                                    Uid="MAPositionenTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
-                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Margin="0,-8,0,0">
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Margin="0,-1,0,0">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Stunden">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbStundenMA" Width="100"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
                                 <DataGrid
                                     x:Name="dgKfzTePositionen"
+                                    Uid="KfzPositionenTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
-                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Margin="0,192,0,0" Grid.RowSpan="2" Width="642">
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="4" Margin="0,96,0,0" Grid.RowSpan="2" Width="449" Grid.Row="1">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbKMKfz"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
 
 
@@ -1676,6 +1218,10 @@
                                 <TextBlock x:Name="tblockPosition" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="567,59,0,0" TextWrapping="Wrap" Text="Positionsbezeichnung" VerticalAlignment="Top" Width="123"/>
                                 <TextBlock Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="567,10,0,0" TextWrapping="Wrap" Text="Positionsnummer" VerticalAlignment="Top" Width="143"/>
                                 <TextBox x:Name="tbPositionID" Grid.Column="3" HorizontalAlignment="Left" Height="32" Margin="739,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127"/>
+                                <TextBlock x:Name="tbErträgePositionen" Grid.Column="3" HorizontalAlignment="Left" Height="34" Margin="724,96,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="96"/>
+                                <TextBlock Grid.Column="3" HorizontalAlignment="Left" Height="33" Margin="567,96,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Gesamt Erträge:" VerticalAlignment="Top" Width="90"/>
+                                <TextBlock Grid.Column="3" HorizontalAlignment="Left" Height="38" Margin="567,145,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Gesamt Aufwendungen:" VerticalAlignment="Top" Width="143"/>
+                                <TextBlock x:Name="tbAufwendungenPositionen" Grid.Column="3" HorizontalAlignment="Left" Height="38" Margin="724,145,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="96"/>
 
 
                             </Grid>
@@ -1694,42 +1240,28 @@
                                 <DataGrid 
                                     Grid.Row="0"
                                     x:Name="dgMATeDLintern"
+                                    Uid="MADLinternTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="0,-18,0,0">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Stunden">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbStundenMA" Width="100"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
                                 <DataGrid 
                                     Grid.Row="1"
                                     x:Name="dgKfzTeDLintern"
+                                    Uid="KfzDLinternTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbKMKfz"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -1749,42 +1281,28 @@
                                 <DataGrid 
                                     Grid.Row="0"
                                     x:Name="dgMATeAbfall"
+                                    Uid="MAAbfallTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-2,-18,0,0">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Stunden">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbStundenMA" Width="100"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
                                 <DataGrid 
                                     Grid.Row="1"
                                     x:Name="dgKfzTeAbfall"
+                                    Uid="KfzAbfallTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbKMKfz"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -1804,42 +1322,28 @@
                                 <DataGrid 
                                     Grid.Row="0"
                                     x:Name="dgMATeLieferung"
+                                    Uid="MALiefernTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
-                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="0,-18,0,0">
+                                    ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-2,-18,0,0">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Stunden">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbStundenMA" Width="100"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
                                 <DataGrid 
                                     Grid.Row="1"
                                     x:Name="dgKfzTeLieferung"
+                                    Uid="KfzLiefernTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbKMKfz"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -1858,42 +1362,28 @@
                                 <DataGrid 
                                     Grid.Row="0"
                                     x:Name="dgMATeDLextern"
+                                    Uid="MADLexternTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-2,-18,0,0">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Stunden">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbStundenMA" Width="100"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
 
                                 <DataGrid 
                                     Grid.Row="1"
                                     x:Name="dgKfzTeDLextern"
+                                    Uid="KfzDLexternTechnik"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top" 
                                     d:ItemsSource="{d:SampleData ItemCount=5}"
                                     AutoGenerateColumns="True"
                                     ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                     <DataGrid.Columns>
-                                        <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                        <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <TextBox x:Name="tbKMKfz"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </Grid>
@@ -1909,7 +1399,7 @@
                                 <Label Content="Betrag" Margin="298,134,470,414"/>
                                 <TextBox x:Name="tbErlösPosition" Width="100" Height="30" Margin="428,78,328,467"/>
                                 <Label Content="Positionsbezeichnung" Margin="298,79,433,469"/>
-                                <ListBox x:Name="lbErträge" Width="258" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,27,588,30" SelectionChanged="lbErträge_SelectionChanged"/>
+                                <ListBox x:Name="lbErträge" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="11,18,603,62" SelectionChanged="lbErträge_SelectionChanged"/>
                                 <Button x:Name="btAddErlös" Content="Ertrag hinzufügen" HorizontalAlignment="Left" Height="30" Margin="298,186,0,0" VerticalAlignment="Top" Width="115" Click="btAddErlös_Click"/>
                                 <Button x:Name="btUpdateErträge" Content="Ertrag Update" HorizontalAlignment="Left" Height="30" Margin="430,186,0,0" VerticalAlignment="Top" Width="115" Click="btUpdateErträge_Click"/>
                                 <Button x:Name="btDelErträge" Content="Ertrag entfernen" HorizontalAlignment="Left" Height="30" Margin="572,186,0,0" VerticalAlignment="Top" Width="115" Click="btDelErträge_Click"/>
@@ -1930,12 +1420,12 @@
                                 <TextBox x:Name="tbAufwandPosition" Width="100" Height="30" Margin="403,72,353,473"/>
                                 <Label Content="Betrag" Margin="278,132,503,413"/>
                                 <Label Content="Position" Margin="278,78,468,473"/>
-                                <ListBox x:Name="lbAufwände" Width="240" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="10,18,606,40" SelectionChanged="lbAufwände_SelectionChanged"/>
+                                <ListBox x:Name="lbAufwände" Width="240" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="11,18,606,63" SelectionChanged="lbAufwände_SelectionChanged"/>
                                 <Label Content="Positionsnummer" HorizontalAlignment="Left" Height="38" Margin="278,18,0,0" VerticalAlignment="Top" Width="110"/>
                                 <TextBox x:Name="tbAufwandsID" Height="30" Width="100" HorizontalAlignment="Left" Margin="403,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
                                 <Button x:Name="btAddAufwand"  Content="Aufwand hinzufügen" HorizontalAlignment="Left" Height="30" Margin="283,216,0,0" VerticalAlignment="Top" Width="120" Click="btAddAufwand_Click"/>
                                 <Button x:Name="btUpdateAufwand" Content="Aufwand Update" HorizontalAlignment="Left" Height="30" Margin="428,216,0,0" VerticalAlignment="Top" Width="100" Click="btUpdateAufwand_Click"/>
-                                <Button x:Name="btDelAufwand" Content="Aufwand entfernen" HorizontalAlignment="Left" Height="30" Margin="574,216,0,0" VerticalAlignment="Top" Width="100" Click="btDelAufwand_Click"/>
+                                <Button x:Name="btDelAufwand" Content="Aufwand entfernen" HorizontalAlignment="Left" Height="30" Margin="574,216,0,0" VerticalAlignment="Top" Width="110" Click="btDelAufwand_Click"/>
                             </Grid>
 
                         </TabItem>
@@ -1959,44 +1449,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMABuEinpflegen"
+                                Uid="MAEinpflegenBuchhaltung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-3,-18,0,0">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-2,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzBuEinpflegen"
+                                Uid="KfzEinpflegenBuchhaltung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -2015,44 +1489,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMABuPrüfung"
+                                Uid="MAPrüfungBuchhaltung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-2,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzBuPrüfung"
+                                Uid="KfzPrüfungBuchhaltung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -2071,44 +1529,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMABuArchivierung"
+                                Uid="MAArchivierungBuchhaltung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
-                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="0,-18,0,0">
+                                ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-2,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzBuArchivierung"
+                                Uid="KfzArchivierungBuchhaltung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
@@ -2127,44 +1569,28 @@
                             <DataGrid 
                                 Grid.Row="0"
                                 x:Name="dgMABuNachkalkualtion"
+                                Uid="MANachkalkulationBuchhaltung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3" Margin="-2,-18,0,0">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Stunden">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbStundenMA" Width="100"/>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
 
                             <DataGrid 
                                  Grid.Row="1"
                                 x:Name="dgKfzBuNachkalkualtion"
+                                Uid="KfzNachkalkualtionBuchhaltung"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top" 
                                 d:ItemsSource="{d:SampleData ItemCount=5}"
                                 AutoGenerateColumns="True"
                                 ScrollViewer.VerticalScrollBarVisibility="Visible" Grid.ColumnSpan="3">
                                 <DataGrid.Columns>
-                                    <DataGridCheckBoxColumn Header="wird eingesetzt" Binding="{Binding Verwendung}" />
 
-                                    <DataGridTemplateColumn Header="Kilometer" Width="100">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBox x:Name="tbKMKfz">
-
-                                                </TextBox>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>
